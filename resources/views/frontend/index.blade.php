@@ -235,59 +235,46 @@
         <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
 
           <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
-            <li data-filter="*" class="filter-active">All</li>
-            <li data-filter=".filter-app">App</li>
-            <li data-filter=".filter-product">Product</li>
-            <li data-filter=".filter-branding">Branding</li>
-            <li data-filter=".filter-books">Books</li>
+            {{-- <li data-filter="*" class="filter-active">All</li> --}}
+            @foreach ($categories as $key => $category)
+            
+            <li data-filter=".filter-{{$category->id}}" class="text-capitalize @if ($loop->first) filter-active @endif">{{$category->category_name}}</li>
+            @endforeach
+            {{-- <li data-filter=".filter-product">Product</li> --}}
           </ul><!-- End Portfolio Filters -->
 
           <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
-
-            <div class="col-lg-3 col-md-6 portfolio-item isotope-item filter-app rounded">
+            @foreach ($products as $key => $product)
+            <div class="col-lg-3 col-md-6 portfolio-item isotope-item filter-{{$product->category_id}} rounded">
               <div class="portfolio-content h-100">
-                <a href="{{ asset('frontend/img/portfolio/app-1.jpg') }}" data-gallery="portfolio-gallery-app" class="glightbox"><img
-                    src="{{ asset('frontend/img/portfolio/app-1.jpg') }}" class="img-fluid rounded" alt=""></a>
+                <a href="{{ $product->product_image ? asset($product->product_image) : '' }}" data-gallery="portfolio-gallery-app" class="glightbox"><img
+                    src="{{ $product->product_image ? asset($product->product_image) : '' }}" class="img-fluid rounded" alt="{{ $product->product_name }}"></a>
                 <div class="portfolio-info">
-                  <div>Lorem ipsum dolor sit amet consectetur</div>
+                  <div>{{ $product->product_name }}</div>
                   <div class="d-flex justify-content-center align-items-center gap-2 mb-1">
-                    <del class="text-muted">$24.00</del>
-                    <span class="text-dark fw-semibold">$18.00</span>
+                    @if ($product->discount_price == null)
+                    <span class="text-dark fw-semibold">{{ round($product->selling_price) }}</span>
+                    @else
+                    <del class="text-muted">{{ round($product->selling_price) }}</del>
+                    <span class="text-dark fw-semibold">{{ round($product->discount_price) }}</span>
                     <span
-                      class="badge border border-dark-subtle rounded-0 fw-normal px-1 fs-7 lh-1 text-body-tertiary">10%
+                      class="badge border border-dark-subtle rounded-0 fw-normal px-1 fs-7 lh-1 text-body-tertiary">{{discountPercentage($product->selling_price,$product->discount_price)}}%
                       OFF</span>
+                    @endif
                   </div>
                 </div>
-                <div class="d-flex gap-1 justify-content-between px-1">
+                <div class="d-flex gap-1 justify-content-between px-1 pb-1">
                   <input type="number" name="name" class="form-control" style="width: 30%;" value="1" min="1"
                     required="">
 
-                  <button class="button-primary d-block w-100"> Order Now</button>
+                  <button class="btn btn-outline-primary d-block w-100" id="{{ $product->id }}"  onclick="buyNow(this.id)"><i class="bi bi-basket pr-4"></i> Order Now</button>
                 </div>
               </div>
             </div><!-- End Portfolio Item -->
-            <div class="col-lg-3 col-md-6 portfolio-item isotope-item filter-app rounded">
-              <div class="portfolio-content h-100">
-                <a href="{{ asset('frontend/img/portfolio/app-1.jpg') }}" data-gallery="portfolio-gallery-app" class="glightbox"><img
-                    src="{{ asset('frontend/img/portfolio/app-1.jpg') }}" class="img-fluid rounded" alt=""></a>
-                <div class="portfolio-info">
-                  <div>Lorem ipsum dolor sit amet consectetur</div>
-                  <div class="d-flex justify-content-center align-items-center gap-2 mb-1">
-                    <del class="text-muted">$24.00</del>
-                    <span class="text-dark fw-semibold">$18.00</span>
-                    <span
-                      class="badge border border-dark-subtle rounded-0 fw-normal px-1 fs-7 lh-1 text-body-tertiary">10%
-                      OFF</span>
-                  </div>
-                </div>
-                <div class="d-flex gap-1 justify-content-between px-1">
-                  <input type="number" name="name" class="form-control" style="width: 30%;" value="1" min="1"
-                    required="">
 
-                  <button class="button-primary d-block w-100"> Order Now</button>
-                </div>
-              </div>
-            </div><!-- End Portfolio Item -->
+            @endforeach
+
+         
 
 
 
@@ -423,7 +410,7 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Contact</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+        {{-- <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p> --}}
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -436,7 +423,7 @@
                 <i class="bi bi-geo-alt flex-shrink-0"></i>
                 <div>
                   <h3>Address</h3>
-                  <p>A108 Adam Street, New York, NY 535022</p>
+                  <p>  {{ $settings['address'] ?? null }}</p>
                 </div>
               </div><!-- End Info Item -->
 
@@ -444,15 +431,17 @@
                 <i class="bi bi-telephone flex-shrink-0"></i>
                 <div>
                   <h3>Call Us</h3>
-                  <p>+1 5589 55488 55</p>
+                  <p> <a class="text-light" href="tel:+{{ $settings['phone'] ?? null }}" >{{ $settings['phone'] ?? null }}</a></p>
                 </div>
               </div><!-- End Info Item -->
-
+              
               <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
                 <i class="bi bi-envelope flex-shrink-0"></i>
                 <div>
                   <h3>Email Us</h3>
-                  <p>info@example.com</p>
+                  <p> <a class="text-light"
+                    href="mailto:{{ $settings['contact_mail'] ?? null }}"> {{ $settings['contact_mail'] ?? null }}</a></p>
+              
                 </div>
               </div><!-- End Info Item -->
 

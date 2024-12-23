@@ -22,21 +22,15 @@ class IndexController extends Controller
         // Fetching recent, trend, and top products in a single query
         $productsQuery = Product::query();
 
-           // Fetching top products ordered by priority
-          $topProducts = $productsQuery->whereTop(true)->orderBy('priority', 'asc')->get();
-
-        // Fetching recent products
-        $recentProducts = $productsQuery->whereStatus(true)->latest()->limit(10)->get();
-
-        // Fetching trending products
-        $trendProducts = $productsQuery->whereTrend(true)->latest()->limit(10)->get();
+   
 
      
         // Paginating all products with status true
-        $products = $productsQuery->whereStatus(true)->latest()->paginate(18);
+        $products = $productsQuery->whereStatus(true)->latest()->get();
+        // $products = $productsQuery->whereStatus(true)->latest()->paginate(18);
         $sliders = Slider::whereSlider_status(true)->limit(5)->get();
         $reviews = Review::whereStatus(1)->latest()->get();
-        return view('frontend.index', compact('categories', 'products', 'sliders', 'recentProducts', 'trendProducts', 'topProducts', 'reviews'));
+        return view('frontend.index', compact('categories', 'products', 'sliders',  'reviews'));
     }
     public function ProductDetails($slug)
     {
