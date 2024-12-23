@@ -1,0 +1,261 @@
+<div class="container">
+    <div class="row cols-xs-space cols-sm-space cols-md-space">
+        <div class="col-xl-6">
+
+            <div class="bg-white panel panel-success">
+                <div class="panel-heading p-3">
+                    <center><strong style="font-size: 16px" class="text-primary">অর্ডারটি কনফার্ম করতে আপনার নাম,
+                            ঠিকানা, মোবাইল নাম্বার, লিখে <span style="color:green">অর্ডার কনফার্ম করুন
+                            </span>বাটনে ক্লিক করুন</strong></center>
+                </div>
+                <div class="panel-body" style="padding-left: 30px;padding-right: 30px">
+
+                    <div class="col-sm-12">
+                        <form class="form-default" role="form" id="orderForm" action="{{ url('/placeOrder') }}" method="POST">
+                            @csrf
+                            <div class="form-group" style="padding-bottom: 15px;">
+                                <label for="customer_name">আপনার নাম </label>
+                                <input style="width: 100% !important; border: 1px solid #000; padding-left: 10px;"
+                                    name="customer_name" required="" value="{{auth()->check() ?  auth()->user()->name : ''}}" type="text" class="form-control  @error('customer_name') is-invalid @enderror " aria-describedby="customer_name"
+                                    placeholder="আপনার নাম লিখুন">
+                                    @error('customer_name')
+                                    <div  id="customer_name" class="invalid-feedback">
+                                        {{ $message }}
+                                      </div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group" style="padding-bottom: 15px;">
+                                <label for="customer_address">আপনার ঠিকানা</label>
+                                <input
+                                    style="width: 100% !important; border: 1px solid #000; padding-left: 10px; border-radius: 5px !important;"
+                                    name="customer_address" required="" value="{{auth()->check() ?  auth()->user()->address : ''}}" type="text" class="form-control  @error('customer_address') is-invalid @enderror"
+                                    placeholder="আপনার ঠিকানা লিখুন">
+                                    @error('customer_address')
+                                    <div id="customer_address" class="invalid-feedback">
+                                        {{ $message }}
+                                      </div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group" style="padding-bottom: 15px;">
+                                <label for="customer_phone">আপনার মোবাইল</label>
+                                <input
+                                    style="width: 100% !important; border: 1px solid #000; padding-left: 10px; border-radius: 5px !important;"
+                                    name="customer_phone" required="" type="text" value="{{auth()->check() ?  auth()->user()->phone : ''}}" class="form-control  @error('customer_phone') is-invalid @enderror"
+                                    pattern="\d*" maxlength="11" minlength="11" placeholder="আপনার মোবাইল লিখুন">
+                                    @error('customer_phone')
+                                    <div id="customer_phone" class="invalid-feedback">
+                                        {{ $message }}
+                                      </div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group" style="padding-bottom: 15px;">
+                                <label for="shipping_method">ডেলিভারি জোন</label>
+                                <select id="shipping_id" name="shipping_type" required="required" class="form-control  @error('shipping_type') is-invalid @enderror"
+                                    style="border: 1px solid #000;">
+                                    <option selected="" disabled="">আপনার ডেলিভারি জোন সিলেক্ট করুন</option>
+                                    @forelse ($data['shipping_cost'] as $item)
+                                        
+                                    <option class="text-capitalize" value="{{$item->cost}}">{{$item->title. ' '. $item->cost}} TK</option>
+                                    @empty
+                                        
+                                    @endforelse
+                                </select>
+
+                                @error('shipping_type')
+                                <div id="validationServer05Feedback" class="invalid-feedback">
+                                    {{ $message }}
+                                  </div>
+                            @enderror
+                            </div>
+
+                            <div class="form-group" style="padding-bottom: 15px;">
+                                <label for="customer_address">ডেলিভারি নোট (যদি থাকে)</label>
+                                <input
+                                    style="width: 100% !important; border: 1px solid #000; padding-left: 10px; border-radius: 5px !important;"
+                                    name="customera_note"  type="text" class="form-control"
+                                    placeholder="ডেলিভারি নোট লিখুন"> 
+                            </div>
+
+                            <div class="form-group pb-2">
+                                <button type="submit" class="btn btn-primary btn-block" id="order-btn"> <i class='fa fa-spinner fa-spin mr-2 d-none'></i> অর্ডার
+                                    কনফার্ম করুন</button>
+                                 
+                            {{-- <div class="form-group pb-2" >
+                                <a href="{{ url('/') }}" class="btn btn-outline-info btn-block"> আরো শপিং
+                                    করুন </a>
+                            </div> --}}
+                        </form>
+                    </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6 ml-lg-auto">
+            <div class="form-default bg-white p-4">
+                <div class="">
+                    <div class="">
+                        <h6>আপনার অর্ডার</h6>
+                        <hr>
+                        <table class="table-cart border-bottom">
+                            <thead>
+                                <tr>
+                                    <th class="product-image "></th>
+                                    <th class="product-name">Product</th>
+
+                                    <th class="product-price d-none d-lg-table-cell">Price</th>
+                                    <th class="product-quanity  d-md-table-cell">Quantity</th>
+                                    <th class="product-total">Total</th>
+
+                                    <th class="product-remove"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($data['content'] as $item)
+                                    <tr class="cart-item">
+                                        <td class="product-image ">
+                                            <a href="{{ url('product/' . $item->slug) }}" class="mr-3">
+                                                <img style="width: 50px" loading="lazy"
+                                                    src="{{ asset($item->options->image) }}">
+                                            </a>
+                                        </td>
+
+                                        <td class="product-name">
+                                            <span
+                                                class="pr-4 d-block">{{ $item->name . ($item->options->size ? '-' . $item->options->size : '') . ($item->options->color ? '-' . $item->options->color : '') }}.</span>
+                                        </td>
+
+                                        <td class="product-price d-none d-lg-table-cell">
+                                            <span class="pr-3 d-block">Tk{{ $item->price }}</span>
+                                        </td>
+
+
+                                        <td class="product-quantity d-md-table-cell">
+                                            <div class="input-group input-group--style-2 pr-4" style="width: 130px;">
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-number" type="button" data-type="minus"
+                                                        data-field="quantity[0]">
+                                                        <i class="la la-minus"></i>
+                                                    </button>
+                                                </span>
+                                                <input type="number" name="quantity[0]"
+                                                    class="form-control input-number" placeholder="1"
+                                                    value="{{ $item->qty }}" min="1" max="10"
+                                                    data-id="{{ $item->rowId }}"
+                                                    onchange="updateQuantity(this.dataset.id, this)">
+
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-number" type="button" data-type="plus"
+                                                        data-field="quantity[0]">
+                                                        <i class="la la-plus"></i>
+                                                    </button>
+                                                </span>
+                                            </div>
+                                        </td>
+
+
+                                        <td class="product-total">
+                                            <span>Tk{{ $item->qty * $item->price }}</span>
+                                        </td>
+
+                                        <td class="product-remove">
+                                            <a href="#" id="{{ $item->rowId }}"
+                                                onclick="removeFromCartView(event,this.id)" class="text-right pl-4">
+                                                <i class="la la-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            <div class="card sticky-top">
+                <div class="card-body py-0">
+                    @auth
+                            <div class="accordion" id="accordionExample">
+    
+                          
+                                <div class="card ">
+                                  <div class="card-header p-0" id="headingThree">
+                                    <h2 class="mb-0">
+                                      <button class="btn btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        Redeem Your {{ isset($settings['point_name']) ? $settings['point_name'] : 'point' }} <i class="la la-chevron-circle-down text-right"></i>
+                                      </button>
+                                    </h2>
+                                  </div>
+                                  <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                                    <div class="card-body p-1">
+                                        <div class="text-info my-2">You have {{auth()->user()->points}}. Per {{ isset($settings['point']) ? $settings['point']: '0'   }} {{ isset($settings['point_name']) ? $settings['point_name'] : 'point' }} = 1 TK</div>
+                                        @if ($data['discount'] <= 0)
+                                            
+                                        <form action="{{route('redeem')}}" method="post">
+                                            @csrf
+                                            <div class="form-group">
+                           
+                                                <input type="number" class="form-control" name="point"
+                                                    id="point"
+                                                    max="{{auth()->user()->points}}"
+                                                    placeholder="Enter point">
+                                              
+                                            </div>
+                                            <button class="btn btn-primary btn-sm">Redeem</button>
+                                        </form>
+                                        @else
+                                        <button class="btn btn-danger btn-sm">Remove</button>
+                                            
+                                        @endif
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                    @endauth
+                    <table class="table-cart table-cart-review">
+                        <tbody>
+                        </tbody>
+                    </table>
+
+                    <table class="table-cart table-cart-review">
+
+                        <tfoot>
+                            <tr class="cart-subtotal">
+                                <th>Subtotal</th>
+                                <td class="text-right">
+                                    <span id="subtotal" class="strong-600">Tk {{ $data['subtotal'] }}</span>
+                                </td>
+                            </tr>
+
+                            <tr class="cart-discount">
+                                <th class=" font-weight-normal">Discount</th>
+                                <td class="text-right">
+                                    <span id="total-discount" class="text-italic">Tk {{$data['discount']}}</span>
+                                </td>
+                            </tr>
+                            <tr class="cart-shipping">
+                                <th>Total Shipping</th>
+                                <td class="text-right">
+                                    <span id="shipping-cost" class="text-italic">Tk 0</span>
+                                </td>
+                            </tr>
+
+
+
+                            <tr class="cart-total">
+                                <th><span class="strong-600">Total</span></th>
+                                <td class="text-right">
+                                    <strong><span id="total">Tk{{ $data['total'] }}</span></strong>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

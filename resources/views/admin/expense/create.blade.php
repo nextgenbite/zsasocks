@@ -1,0 +1,69 @@
+@extends('admin.layouts.app')
+
+@section('content')
+    <div class="pagetitle">
+        <h1>{{ $title[0] }}</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url('/home') }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ url('/admin/' . $title[1]) }}">{{ $title[0] }}</a></li>
+                <li class="breadcrumb-item active">Create</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+        <div class="col-lg-10 offset-lg-1">
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Create a {{ $title[0] }}</h5>
+
+                    <!-- Vertical Form -->
+                    <form class="row g-3" action="{{ URL::to('/admin/' . $title[1]) }}" method="POST"
+                        enctype="multipart/form-data">
+                        @csrf
+
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <label for="inputNanme4" class="form-label">Date</label>
+                                <input type="date" name="date" class="form-control">
+
+                                @error('date')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <label for="inputNanme4" class="form-label">Description</label>
+                                <textarea name="description" class="" rows="5" id="summernote"></textarea>
+
+                                @error('description')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <label for="inputNanme4" class="form-label">Amount</label>
+                            <input type="number" name="amount" class="form-control" id="inputNanme4">
+                            @error('amount')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="btn-group mt-2">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="reset" class="btn btn-secondary">Reset</button>
+                        </div>
+                    </form><!-- Vertical Form -->
+
+                </div>
+            </div>
+
+
+        </div>
+
+    </section>
+
+    </div>
+@endsection
