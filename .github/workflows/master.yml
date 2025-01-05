@@ -16,14 +16,14 @@ jobs:
           fetch-depth: 2 
 
       # Optional: Install PHP and Composer (if needed)
-      - name: Install PHP and Composer
-        uses: shivammathur/setup-php@v2
-        with:
-            php-version: '8.1' # Adjust to match your PHP version
-            tools: 'composer'
+      # - name: Install PHP and Composer
+      #   uses: shivammathur/setup-php@v2
+      #   with:
+      #       php-version: '8.1' # Adjust to match your PHP version
+      #       tools: 'composer'
 
-      - name: Install PHP dependencies
-        run: composer update --no-dev --optimize-autoloader
+      # - name: Install PHP dependencies
+      #   run: composer update --no-dev --optimize-autoloader
 
       # Sync files using FTP-Deploy-Action
       - name: FTP-Deploy-Action
