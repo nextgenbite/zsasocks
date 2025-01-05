@@ -28,6 +28,7 @@ jobs:
           protocol: ftps
           port: 21
           server-dir: /public_html/
+          security: loose
         env:
           GIT_TRACE: 1
 
