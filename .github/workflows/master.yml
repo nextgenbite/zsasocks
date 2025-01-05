@@ -1,0 +1,32 @@
+name: 🚀 Deploy website on push
+
+on:
+  push:
+    branches:
+      - v2
+  pull_request:
+    branches:
+      - v2
+
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the latest code
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v3
+
+      # Step 2: Sync files to the FTP server
+      - name: 📂 Sync files to public_html
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ftp.zsasocks.com
+          username: zsasocks
+          password: ${{ secrets.ftp_password }}
+          protocol: ftps
+          port: 21
+          remote-dir: /public_html
+        env:
+          GIT_TRACE: 1
