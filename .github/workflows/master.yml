@@ -1,35 +1,37 @@
-name: 🚀 Deploy website on push
-
+name: Publish Website to CPanel
 on:
   push:
     branches:
-      - master
-  pull_request:
-    branches:
-      - master
-
+      - develop
 jobs:
-  web-deploy:
-    name: 🎉 Deploy
+  FTP-Deploy-Action:
+    name: FTP-Deploy-Action
     runs-on: ubuntu-latest
-
     steps:
-      # Step 1: Checkout the latest code
-      - name: 🚚 Get latest code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v2.1.0
+        with:
+          fetch-depth: 2 
 
-      # Step 2: Sync files to the FTP server
-      - name: 📂 Sync files to public_html
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      # Optional: Install PHP and Composer (if needed)
+      - name: Install PHP and Composer
+        uses: shivammathur/setup-php@v2
+        with:
+            php-version: '8.1' # Adjust to match your PHP version
+            tools: 'composer'
+
+      - name: Install PHP dependencies
+        run: composer update --no-dev --optimize-autoloader
+
+      # Sync files using FTP-Deploy-Action
+      - name: FTP-Deploy-Action
+        uses: SamKirkland/FTP-Deploy-Action@4.3.3
         with:
           server: ftp.zsasocks.com
           username: zsasocks
           password: ${{ secrets.ftp_password }}
           protocol: ftps
           port: 21
-          server-dir: /public_html/
           security: loose
-          timeout: 1200000
-        env:
-          GIT_TRACE: 1
+          server-dir: /public_html/ # Target directory on server
+
 
