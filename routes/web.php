@@ -34,7 +34,7 @@ use Illuminate\Support\Facades\Auth;
 Auth::routes();
 
 
-Route::middleware('auth:web', 'role:admin')->group(function () {
+Route::middleware('auth:web')->group(function () {
     Route::get('config/clear', function() {
 
         Artisan::call('optimize:clear');
