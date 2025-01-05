@@ -29,6 +29,7 @@ jobs:
           port: 21
           server-dir: /public_html/
           security: loose
+          timeout: 1200000
         env:
           GIT_TRACE: 1
 
