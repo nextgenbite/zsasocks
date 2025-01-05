@@ -50,8 +50,8 @@
                           @endif
                         </td> --}}
                      
-                        <td class="btn-group">
-                          <a  href="{{URL::to('/admin/'.$title[1].'/'.$item->id.'/edit')}}" class="btn btn-primary btn-sm">Manage</a>
+                        <td class="text-center">
+                          {{-- <a  href="{{URL::to('/admin/'.$title[1].'/'.$item->id.'/edit')}}" class="btn btn-primary btn-sm">Manage</a> --}}
                           <a id="delete" href="{{URL::to('/admin/'.$title[1].'/'.$item->id)}}" class="btn btn-danger btn-sm">Remove</a>
                         
                           <form id="delete-form"  action="{{URL::to('/admin/'.$title[1].'/'.$item->id)}}" method="post" class="d-none">

@@ -1,95 +1,148 @@
+<style>
+
+.input-group--style-2 .form-control {
+  border-left: 0;
+  border-right: 0;
+}
+
+.input-group--style-2 .form-control:focus {
+  background: transparent;
+}
+
+.input-group--style-2 .input-group-btn > .btn {
+  border-radius: 50%;
+  background: transparent;
+  border-color: #e6e6e6;
+  color: #818a91;
+  font-size: 1rem;
+  padding-top: 0.6875rem;
+  padding-bottom: 0.6875rem;
+  cursor: pointer;
+}
+
+.input-group--style-2 .input-group-btn > .btn[disabled] {
+  color: #eceeef;
+}
+
+.input-group--style-2 .input-group-btn > .btn:focus {
+  box-shadow: none;
+}
+
+.input-group--style-2 .input-group-btn:not(:first-child) > .btn {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left-color: #FFF;
+}
+
+.input-group--style-2 .input-group-btn:not(:last-child) > .btn {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right-color: #FFF;
+}
+.table-cart{
+    font-size: 14px;
+}
+</style>
+
 <div class="container">
     <div class="row cols-xs-space cols-sm-space cols-md-space">
         <div class="col-xl-6">
 
-            <div class="bg-white panel panel-success">
-                <div class="panel-heading p-3">
-                    <center><strong style="font-size: 16px" class="text-primary">অর্ডারটি কনফার্ম করতে আপনার নাম,
-                            ঠিকানা, মোবাইল নাম্বার, লিখে <span style="color:green">অর্ডার কনফার্ম করুন
-                            </span>বাটনে ক্লিক করুন</strong></center>
-                </div>
-                <div class="panel-body" style="padding-left: 30px;padding-right: 30px">
-
-                    <div class="col-sm-12">
-                        <form class="form-default" role="form" id="orderForm" action="{{ url('/placeOrder') }}" method="POST">
-                            @csrf
-                            <div class="form-group" style="padding-bottom: 15px;">
-                                <label for="customer_name">আপনার নাম </label>
-                                <input style="width: 100% !important; border: 1px solid #000; padding-left: 10px;"
-                                    name="customer_name" required="" value="{{auth()->check() ?  auth()->user()->name : ''}}" type="text" class="form-control  @error('customer_name') is-invalid @enderror " aria-describedby="customer_name"
-                                    placeholder="আপনার নাম লিখুন">
-                                    @error('customer_name')
-                                    <div  id="customer_name" class="invalid-feedback">
-                                        {{ $message }}
-                                      </div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group" style="padding-bottom: 15px;">
-                                <label for="customer_address">আপনার ঠিকানা</label>
-                                <input
-                                    style="width: 100% !important; border: 1px solid #000; padding-left: 10px; border-radius: 5px !important;"
-                                    name="customer_address" required="" value="{{auth()->check() ?  auth()->user()->address : ''}}" type="text" class="form-control  @error('customer_address') is-invalid @enderror"
-                                    placeholder="আপনার ঠিকানা লিখুন">
-                                    @error('customer_address')
-                                    <div id="customer_address" class="invalid-feedback">
-                                        {{ $message }}
-                                      </div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group" style="padding-bottom: 15px;">
-                                <label for="customer_phone">আপনার মোবাইল</label>
-                                <input
-                                    style="width: 100% !important; border: 1px solid #000; padding-left: 10px; border-radius: 5px !important;"
-                                    name="customer_phone" required="" type="text" value="{{auth()->check() ?  auth()->user()->phone : ''}}" class="form-control  @error('customer_phone') is-invalid @enderror"
-                                    pattern="\d*" maxlength="11" minlength="11" placeholder="আপনার মোবাইল লিখুন">
-                                    @error('customer_phone')
-                                    <div id="customer_phone" class="invalid-feedback">
-                                        {{ $message }}
-                                      </div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group" style="padding-bottom: 15px;">
-                                <label for="shipping_method">ডেলিভারি জোন</label>
-                                <select id="shipping_id" name="shipping_type" required="required" class="form-control  @error('shipping_type') is-invalid @enderror"
-                                    style="border: 1px solid #000;">
-                                    <option selected="" disabled="">আপনার ডেলিভারি জোন সিলেক্ট করুন</option>
-                                    @forelse ($data['shipping_cost'] as $item)
-                                        
-                                    <option class="text-capitalize" value="{{$item->cost}}">{{$item->title. ' '. $item->cost}} TK</option>
-                                    @empty
-                                        
-                                    @endforelse
-                                </select>
-
-                                @error('shipping_type')
-                                <div id="validationServer05Feedback" class="invalid-feedback">
+            <div class="">
+                {{-- <h3 class="card-heading p-3">
+                    <center>Billing address</center>
+                </h3> --}}
+                <div class="col-sm-12">
+                    <form class="form-default php-email-form" role="form" id="orderForm" action="{{ url('/placeOrder') }}" method="POST">
+                        @csrf
+                        <div class="form-group" style="padding-bottom: 15px;">
+                            <label for="customer_name">Full Name</label>
+                            <input
+                                name="customer_name" required="" value="{{auth()->check() ?  auth()->user()->name : ''}}" type="text" class="form-control  @error('customer_name') is-invalid @enderror " aria-describedby="customer_name"
+                                >
+                                @error('customer_name')
+                                <div  id="customer_name" class="invalid-feedback">
                                     {{ $message }}
                                   </div>
                             @enderror
-                            </div>
+                        </div>
 
-                            <div class="form-group" style="padding-bottom: 15px;">
-                                <label for="customer_address">ডেলিভারি নোট (যদি থাকে)</label>
-                                <input
-                                    style="width: 100% !important; border: 1px solid #000; padding-left: 10px; border-radius: 5px !important;"
-                                    name="customera_note"  type="text" class="form-control"
-                                    placeholder="ডেলিভারি নোট লিখুন"> 
-                            </div>
+                        <div class="form-group" style="padding-bottom: 15px;">
+                            <label for="customer_phone">Mobile No.</label>
+                            <input
+                                
+                                name="customer_phone" required="" type="text" value="{{auth()->check() ?  auth()->user()->phone : ''}}" class="form-control  @error('customer_phone') is-invalid @enderror"
+                                >
+                                @error('customer_phone')
+                                <div id="customer_phone" class="invalid-feedback">
+                                    {{ $message }}
+                                  </div>
+                            @enderror
+                        </div>
+                        <div class="form-group" style="padding-bottom: 15px;">
+                            <label for="customer_email">Email</label>
+                            <input
+                                
+                                name="customer_email" required="" type="text" value="{{auth()->check() ?  auth()->user()->email : ''}}" class="form-control  @error('customer_email') is-invalid @enderror"
+                                >
+                                @error('customer_email')
+                                <div id="customer_email" class="invalid-feedback">
+                                    {{ $message }}
+                                  </div>
+                            @enderror
+                        </div>
 
-                            <div class="form-group pb-2">
-                                <button type="submit" class="btn btn-primary btn-block" id="order-btn"> <i class='fa fa-spinner fa-spin mr-2 d-none'></i> অর্ডার
-                                    কনফার্ম করুন</button>
-                                 
-                            {{-- <div class="form-group pb-2" >
-                                <a href="{{ url('/') }}" class="btn btn-outline-info btn-block"> আরো শপিং
-                                    করুন </a>
-                            </div> --}}
-                        </form>
-                    </div>
-                    </div>
+                        <div class="form-group" style="padding-bottom: 15px;">
+                            <label for="customer_address">Address</label>
+                            <textarea name="customer_address" required="" class="form-control  @error('customer_address') is-invalid @enderror">
+                                {{auth()->check() ?  auth()->user()->address : ''}}
+                            </textarea>
+               
+                                @error('customer_address')
+                                <div id="customer_address" class="invalid-feedback">
+                                    {{ $message }}
+                                  </div>
+                            @enderror
+                        </div>
+
+
+
+                        <div class="form-group" style="padding-bottom: 15px;">
+                            <label for="shipping_method">Delivary Zone</label>
+                            <select id="shipping_id" name="shipping_type" required="required" class="form-control  @error('shipping_type') is-invalid @enderror"
+                                >
+                                <option selected="" disabled="">Select a zone</option>
+                                @forelse ($data['shipping_cost'] as $item)
+                                    
+                                <option class="text-capitalize" value="{{$item->cost}}">{{$item->title. ' '. $item->cost}} TK</option>
+                                @empty
+                                    
+                                @endforelse
+                            </select>
+
+                            @error('shipping_type')
+                            <div id="validationServer05Feedback" class="invalid-feedback">
+                                {{ $message }}
+                              </div>
+                        @enderror
+                        </div>
+
+                        <div class="form-group" style="padding-bottom: 15px;">
+                            <label for="customer_address">Delivery Note (optional)</label>
+                            <input name="customera_note"  type="text" class="form-control"> 
+                        </div>
+
+                        <div class="form-group pb-2">
+                            <button type="submit" class="btn btn-primary w-100 rounded" id="order-btn"> 
+                                {{-- <i class='bi bi-arrow-repeat fa-spin mr-2 '></i>  --}}
+                               Order Place</button>
+                             
+                        {{-- <div class="form-group pb-2" >
+                            <a href="{{ url('/') }}" class="btn btn-outline-info btn-block"> আরো শপিং
+                                করুন </a>
+                        </div> --}}
+                    </form>
+                </div>
 
                 </div>
             </div>
@@ -98,9 +151,9 @@
             <div class="form-default bg-white p-4">
                 <div class="">
                     <div class="">
-                        <h6>আপনার অর্ডার</h6>
+                        <h6>Order Details</h6>
                         <hr>
-                        <table class="table-cart border-bottom">
+                        <table class="table-cart table border-bottom">
                             <thead>
                                 <tr>
                                     <th class="product-image "></th>
@@ -123,48 +176,31 @@
                                             </a>
                                         </td>
 
-                                        <td class="product-name">
+                                        <td class="product-name" data-title="Product" style="max-width: 200px;">
                                             <span
                                                 class="pr-4 d-block">{{ $item->name . ($item->options->size ? '-' . $item->options->size : '') . ($item->options->color ? '-' . $item->options->color : '') }}.</span>
                                         </td>
 
                                         <td class="product-price d-none d-lg-table-cell">
-                                            <span class="pr-3 d-block">Tk{{ $item->price }}</span>
+                                            <span class="pr-3 d-block">{{ formatCurrency($item->price) }}</span>
                                         </td>
-
-
-                                        <td class="product-quantity d-md-table-cell">
-                                            <div class="input-group input-group--style-2 pr-4" style="width: 130px;">
-                                                <span class="input-group-btn">
-                                                    <button class="btn btn-number" type="button" data-type="minus"
-                                                        data-field="quantity[0]">
-                                                        <i class="la la-minus"></i>
-                                                    </button>
-                                                </span>
-                                                <input type="number" name="quantity[0]"
-                                                    class="form-control input-number" placeholder="1"
-                                                    value="{{ $item->qty }}" min="1" max="10"
-                                                    data-id="{{ $item->rowId }}"
-                                                    onchange="updateQuantity(this.dataset.id, this)">
-
-                                                <span class="input-group-btn">
-                                                    <button class="btn btn-number" type="button" data-type="plus"
-                                                        data-field="quantity[0]">
-                                                        <i class="la la-plus"></i>
-                                                    </button>
-                                                </span>
-                                            </div>
-                                        </td>
+                                        <td>
+                                            <input type="number" name="quantity[0]" style="width: 80px"
+                                            class="form-control text-center" placeholder="1"
+                                            value="{{ $item->qty }}" min="1" max="10"
+                                            data-id="{{ $item->rowId }}"
+                                            onchange="updateQuantity(this.dataset.id, this)">
+                                    </td>
 
 
                                         <td class="product-total">
-                                            <span>Tk{{ $item->qty * $item->price }}</span>
+                                            <span>{{ formatCurrency($item->qty * $item->price) }}</span>
                                         </td>
 
                                         <td class="product-remove">
-                                            <a href="#" id="{{ $item->rowId }}"
-                                                onclick="removeFromCartView(event,this.id)" class="text-right pl-4">
-                                                <i class="la la-trash"></i>
+                                            <a href="javascript:void(0)" id="{{ $item->rowId }}"
+                                                onclick="removeFromCartView(event,this.id)" class="text-end pl-4 btn btn-danger btn-sm rounded-circle">
+                                                <i class="bi bi-trash"></i>
                                             </a>
                                         </td>
                                     </tr>
@@ -175,7 +211,8 @@
                 </div>
 
             </div>
-            <div class="card sticky-top">
+
+            <div class="card ">
                 <div class="card-body py-0">
                     @auth
                             <div class="accordion" id="accordionExample">
@@ -185,7 +222,7 @@
                                   <div class="card-header p-0" id="headingThree">
                                     <h2 class="mb-0">
                                       <button class="btn btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                        Redeem Your {{ isset($settings['point_name']) ? $settings['point_name'] : 'point' }} <i class="la la-chevron-circle-down text-right"></i>
+                                        Redeem Your {{ isset($settings['point_name']) ? $settings['point_name'] : 'point' }} <i class="la la-chevron-circle-down text-end"></i>
                                       </button>
                                     </h2>
                                   </div>
@@ -215,31 +252,28 @@
                                 </div>
                               </div>
                     @endauth
-                    <table class="table-cart table-cart-review">
-                        <tbody>
-                        </tbody>
-                    </table>
+                
 
-                    <table class="table-cart table-cart-review">
+                    <table class="table table-cart-review">
 
                         <tfoot>
                             <tr class="cart-subtotal">
                                 <th>Subtotal</th>
-                                <td class="text-right">
-                                    <span id="subtotal" class="strong-600">Tk {{ $data['subtotal'] }}</span>
+                                <td class="text-end">
+                                    <span id="subtotal" class="strong-600">{{ formatCurrency($data['subtotal']) }}</span>
                                 </td>
                             </tr>
 
                             <tr class="cart-discount">
                                 <th class=" font-weight-normal">Discount</th>
-                                <td class="text-right">
-                                    <span id="total-discount" class="text-italic">Tk {{$data['discount']}}</span>
+                                <td class="text-end">
+                                    <span id="total-discount" class="text-italic">{{formatCurrency($data['discount'])}}</span>
                                 </td>
                             </tr>
                             <tr class="cart-shipping">
                                 <th>Total Shipping</th>
-                                <td class="text-right">
-                                    <span id="shipping-cost" class="text-italic">Tk 0</span>
+                                <td class="text-end">
+                                    <span id="shipping-cost" class="text-italic">{{formatCurrency(0)}}</span>
                                 </td>
                             </tr>
 
@@ -247,8 +281,8 @@
 
                             <tr class="cart-total">
                                 <th><span class="strong-600">Total</span></th>
-                                <td class="text-right">
-                                    <strong><span id="total">Tk{{ $data['total'] }}</span></strong>
+                                <td class="text-end">
+                                    <strong><span id="total">{{ formatCurrency($data['total']) }}</span></strong>
                                 </td>
                             </tr>
                         </tfoot>

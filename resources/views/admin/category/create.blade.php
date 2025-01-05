@@ -29,7 +29,7 @@
                 <span class="text-danger">{{ $message }}</span>
                 @enderror
               </div>
-              <div class="col-12">
+              {{-- <div class="col-12">
                 <label for="parent_id" class="form-label"> Parent Category</label>
                 <select id="parent_id" class="form-select" name="parent_id">
                   <option selected disabled>Choose...</option>
@@ -40,7 +40,7 @@
                 @error('parent_id') 
                 <span class="text-danger">{{ $message }}</span>
                 @enderror
-              </div>
+              </div> --}}
               <div class="col-12">
                 <label for="inputNumber"  class="form-label">File Upload</label>
                   <input class="form-control" name="thumbnail" type="file" id="formFile">

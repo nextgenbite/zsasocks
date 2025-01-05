@@ -78,13 +78,12 @@ Route::middleware('auth:web', 'role:admin')->group(function () {
     Route::get('/admin/orders/print', [OrderController::class, 'multiplePdf'])->name('order.print.selected');
     Route::get('/admin/order/item/remove/{id}', [OrderController::class, 'itemRemove'])->name('order.item.remove');
     Route::post('/admin/order/excel/update', [OrderController::class, 'updateData'])->name('order.excel.update');
-        // Expense
-        Route::resource('admin/expense', ExpenseController::class);
+
 
   // Report
   Route::controller(ReportController::class)->group(function(){
 
-    Route::get('admin/report/profit-loss','profitLoss');
+    // Route::get('admin/report/profit-loss','profitLoss');
     Route::get('admin/report/product-stock','productStock');
     Route::get('admin/report/buying-product','buyingProduct');
 
@@ -93,11 +92,7 @@ Route::middleware('auth:web', 'role:admin')->group(function () {
 
 
    });
-    // coupon
-    Route::resource('admin/coupons', CouponController::class);
-    // sms/write
-    Route::get('admin/sms/write', [SmsController::class, 'create']);
-    Route::post('admin/sms/store', [SmsController::class, 'store']);
+
 
     Route::get('change/password', [App\Http\Controllers\HomeController::class, 'changePassword'])->name('change.password');
     Route::post('change/password', [App\Http\Controllers\HomeController::class, 'AdminUpdateChangePassword'])->name('change.update');
@@ -108,37 +103,16 @@ Route::middleware('auth:web', 'role:admin')->group(function () {
     Route::resource('/admin/setting', App\Http\Controllers\SettingController::class)->only('index', 'store');
     Route::resource('/admin/page', App\Http\Controllers\PageController::class)->only('index', 'create', 'store', 'edit', 'update', 'destroy');
     Route::resource('/admin/review', App\Http\Controllers\ReviewController::class)->only('index', 'create', 'store', 'edit', 'update', 'destroy');
-    Route::resource('/admin/point', App\Http\Controllers\PointController::class)->only('index', 'create', 'store', 'edit', 'update', 'destroy');
 
 
-      ///Pos All Route
-Route::controller(PosController::class)->group(function(){
 
-  Route::get('admin/pos','index')->name('index');
-  Route::post('admin/pos/add-cart','addCart')->name('admin.addToCart');
-  Route::get('/allitem','AllItem');
-  Route::post('admin/pos/cart-update/{rowId}','cartUpdate');
-  Route::get('admin/pos/cart-remove/{rowId}','destroy');
-
-  Route::post('/create-invoice','createInvoice');
-
-
- });
       // Route::get('admin/pos', [PosController::class, 'index']);
       // Route::post('admin/pos/add-cart', [PosController::class, 'addCart']);
       // Route::post('admin/pos/cart-update/{$rowId}', [PosController::class, 'cartUpdate']);
       // Route::get('admin/pos/cart-remove/{$rowId}', [PosController::class, 'destroy']);
 
 });
-// User Route
-Route::middleware('auth:web', 'role:user')->group(function () {
-    Route::get('/dashboard', [App\Http\Controllers\UserController::class, 'dashboard'])->name('dashboard');
-    Route::get('/purchase-history', [App\Http\Controllers\UserController::class, 'purchaseHistory'])->name('purchase.history');
-    Route::get('/invoice/customer/{id}', [App\Http\Controllers\UserController::class, 'invoiceCustomer'])->name('invoice.customer');
-    Route::get('/profile', [App\Http\Controllers\UserController::class, 'show'])->name('profile');
-    Route::post('/update-profile', [App\Http\Controllers\UserController::class, 'store'])->name('update.profile');
 
-});
 
 
 Route::get('/', [App\Http\Controllers\IndexController::class, 'index'])->name('home');
@@ -159,13 +133,7 @@ Route::get('/cart/nav-cart-items', [CartController::class, 'navCartItems'])->nam
 Route::post('/cart/redeem', [CartController::class, 'redeemPoint'])->name('redeem');
 
 Route::get('/updateQuantity/{rowId}', [CartController::class, 'updateQuantity']);
-// Frontend Coupon Option
-Route::post('/coupon-apply', [CartController::class, 'CouponApply']);
 
-Route::get('/coupon-calculation', [CartController::class, 'CouponCalculation']);
-
-// Coupon
-Route::get('/coupon-remove', [CartController::class, 'CouponRemove']);
 
 // Orders
 Route::post('/placeOrder', [OrderController::class, 'placeOrder']);

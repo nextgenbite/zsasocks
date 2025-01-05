@@ -32,7 +32,43 @@
 <main class="main">
 
     <!-- Hero Section -->
-    <section id="hero" class="hero section accent-background">
+
+    <div class="portfolio-details-slider swiper init-swiper"  data-aos="fade-up" data-aos-delay="100">
+      <script type="application/json" class="swiper-config">
+        {
+          "loop": true,
+          "speed": 600,
+          "autoplay": {
+            "delay": 5000
+          },
+          "slidesPerView": "auto",
+          "navigation": {
+            "nextEl": ".swiper-button-next",
+            "prevEl": ".swiper-button-prev"
+          },
+          "pagination": {
+            "el": ".swiper-pagination",
+            "type": "bullets",
+            "clickable": true
+          }
+        }
+      </script>
+      <div class="swiper-wrapper align-items-center">
+@foreach ($sliders as $item)
+  
+<div class="swiper-slide">
+  <img src="{{asset($item->slider_image)}}" alt="{{ $item->title }}" class="img-fluid">
+</div>
+@endforeach
+
+    
+
+      </div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+    {{-- <section id="hero" class="hero section accent-background">
 
       <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
         <div class="row gy-5 justify-content-between">
@@ -55,7 +91,8 @@
 
      
 
-    </section><!-- /Hero Section -->
+    </section> --}}
+    <!-- /Hero Section -->
 
     <!-- About Section -->
     <section id="about" class="about section">
@@ -247,16 +284,16 @@
             @foreach ($products as $key => $product)
             <div class="col-lg-3 col-md-6 portfolio-item isotope-item filter-{{$product->category_id}} rounded">
               <div class="portfolio-content h-100">
-                <a href="{{ $product->product_image ? asset($product->product_image) : '' }}" data-gallery="portfolio-gallery-app" class="glightbox"><img
-                    src="{{ $product->product_image ? asset($product->product_image) : '' }}" class="img-fluid rounded" alt="{{ $product->product_name }}"></a>
+                <a href="{{ $product->product_image ? asset($product->product_image) : '/placeholder.jpg' }}" data-gallery="portfolio-gallery-app" class="glightbox"><img
+                    src="{{ $product->product_image ? asset($product->product_image) : '/placeholder.jpg' }}" class="img-fluid rounded w-100" alt="{{ $product->product_name }}"></a>
                 <div class="portfolio-info">
                   <div>{{ $product->product_name }}</div>
                   <div class="d-flex justify-content-center align-items-center gap-2 mb-1">
                     @if ($product->discount_price == null)
-                    <span class="text-dark fw-semibold">{{ round($product->selling_price) }}</span>
+                    <span class="text-dark fw-semibold">{{ formatCurrency($product->selling_price) }}</span>
                     @else
-                    <del class="text-muted">{{ round($product->selling_price) }}</del>
-                    <span class="text-dark fw-semibold">{{ round($product->discount_price) }}</span>
+                    <del class="text-muted">{{ formatCurrency($product->selling_price) }}</del>
+                    <span class="text-dark fw-semibold">{{ formatCurrency($product->discount_price) }}</span>
                     <span
                       class="badge border border-dark-subtle rounded-0 fw-normal px-1 fs-7 lh-1 text-body-tertiary">{{discountPercentage($product->selling_price,$product->discount_price)}}%
                       OFF</span>
@@ -325,75 +362,15 @@
                 }
               </script>
           <div class="swiper-wrapper">
+@foreach ($reviews as $item)
+  
+<div class="swiper-slide">
+  <a href="{{ asset($item->path) }}" data-gallery="portfolio-gallery-app" class="glightbox"><img
+      src="{{ asset($item->path) }}" class="img-fluid" alt=""></a>
 
-            <div class="swiper-slide">
-              <a href="{{ asset('frontend/img/portfolio/app-1.jpg') }}" data-gallery="portfolio-gallery-app" class="glightbox"><img
-                  src="{{ asset('frontend/img/portfolio/app-1.jpg') }}" class="img-fluid" alt=""></a>
-
-            </div><!-- End testimonial item -->
-            <div class="swiper-slide">
-              <a href="{{ asset('frontend/img/portfolio/branding-1.jpg') }}" data-gallery="portfolio-gallery-app" class="glightbox"><img
-                  src="{{ asset('frontend/img/portfolio/branding-1.jpg') }}" class="img-fluid" alt=""></a>
-
-
-            </div><!-- End testimonial item -->
-            <div class="swiper-slide">
-              <a href="{{ asset('frontend/img/portfolio/app-1.jpg') }}" data-gallery="portfolio-gallery-app" class="glightbox"><img
-                  src="{{ asset('frontend/img/portfolio/app-1.jpg') }}" class="img-fluid" alt=""></a>
-
-            </div><!-- End testimonial item -->
-            <div class="swiper-slide">
-              <a href="{{ asset('frontend/img/portfolio/branding-1.jpg') }}" data-gallery="portfolio-gallery-app" class="glightbox"><img
-                  src="{{ asset('frontend/img/portfolio/branding-1.jpg') }}" class="img-fluid" alt=""></a>
-
-
-            </div><!-- End testimonial item -->
-            <div class="swiper-slide">
-              <a href="{{ asset('frontend/img/portfolio/app-1.jpg') }}" data-gallery="portfolio-gallery-app" class="glightbox"><img
-                  src="{{ asset('frontend/img/portfolio/app-1.jpg') }}" class="img-fluid" alt=""></a>
-
-            </div><!-- End testimonial item -->
-            <div class="swiper-slide">
-              <a href="{{ asset('frontend/img/portfolio/branding-1.jpg') }}" data-gallery="portfolio-gallery-app" class="glightbox"><img
-                  src="{{ asset('frontend/img/portfolio/branding-1.jpg') }}" class="img-fluid" alt=""></a>
-
-
-            </div><!-- End testimonial item -->
-            <div class="swiper-slide">
-              <a href="{{ asset('frontend/img/portfolio/app-1.jpg') }}" data-gallery="portfolio-gallery-app" class="glightbox"><img
-                  src="{{ asset('frontend/img/portfolio/app-1.jpg') }}" class="img-fluid" alt=""></a>
-
-            </div><!-- End testimonial item -->
-            <div class="swiper-slide">
-              <a href="{{ asset('frontend/img/portfolio/branding-1.jpg') }}" data-gallery="portfolio-gallery-app" class="glightbox"><img
-                  src="{{ asset('frontend/img/portfolio/branding-1.jpg') }}" class="img-fluid" alt=""></a>
-
-
-            </div><!-- End testimonial item -->
-            <div class="swiper-slide">
-              <a href="{{ asset('frontend/img/portfolio/app-1.jpg') }}" data-gallery="portfolio-gallery-app" class="glightbox"><img
-                  src="{{ asset('frontend/img/portfolio/app-1.jpg') }}" class="img-fluid" alt=""></a>
-
-            </div><!-- End testimonial item -->
-            <div class="swiper-slide">
-              <a href="{{ asset('frontend/img/portfolio/branding-1.jpg') }}" data-gallery="portfolio-gallery-app" class="glightbox"><img
-                  src="{{ asset('frontend/img/portfolio/branding-1.jpg') }}" class="img-fluid" alt=""></a>
-
-
-            </div><!-- End testimonial item -->
-            <div class="swiper-slide">
-              <a href="{{ asset('frontend/img/portfolio/app-1.jpg') }}" data-gallery="portfolio-gallery-app" class="glightbox"><img
-                  src="{{ asset('frontend/img/portfolio/app-1.jpg') }}" class="img-fluid" alt=""></a>
-
-            </div><!-- End testimonial item -->
-            <div class="swiper-slide">
-              <a href="{{ asset('frontend/img/portfolio/branding-1.jpg') }}" data-gallery="portfolio-gallery-app" class="glightbox"><img
-                  src="{{ asset('frontend/img/portfolio/branding-1.jpg') }}" class="img-fluid" alt=""></a>
-
-
-            </div><!-- End testimonial item -->
-
-
+</div><!-- End testimonial item -->
+@endforeach
+  
 
           </div>
           <div class="swiper-pagination"></div>
@@ -403,6 +380,39 @@
 
     </section><!-- /Testimonials Section -->
 
+      <!-- Team Section -->
+      <section id="team" class="team section">
+
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+          <h2>Our Team </h2>
+          {{-- <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p> --}}
+        </div><!-- End Section Title -->
+  
+        <div class="container">
+  
+          <div class="row gy-4">
+  
+            <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
+              <div class="member">
+                <img src="{{asset('/user-img-female.jpg')}}" class="img-fluid" alt="">
+                <h4>Sahira Jahan (Tithi)</h4>
+                <span>General Manager</span>
+                <span><i class="bi bi-phone me-1"></i>01756630755</span>
+                {{-- <div class="social">
+                  <a href=""><i class="bi bi-twitter-x"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div> --}}
+              </div>
+            </div><!-- End Team Member -->
+
+          </div>
+  
+        </div>
+  
+      </section><!-- /Team Section -->
 
     <!-- Contact Section -->
     <section id="contact" class="contact section">
@@ -435,7 +445,7 @@
                 </div>
               </div><!-- End Info Item -->
               
-              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+              <div class="info-item d-flex" data-aos="fade-up">
                 <i class="bi bi-envelope flex-shrink-0"></i>
                 <div>
                   <h3>Email Us</h3>

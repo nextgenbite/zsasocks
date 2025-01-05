@@ -27,87 +27,30 @@
                             class="forms-sample">
                             @csrf
                             <div class="row mt-2">
-                                <div class="col-4 mb-2">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Category</label>
-                                        <select class="form-control p-input" name="category_id" id="">
-                                            <option selected disabled>Select Category</option>
-                                            @foreach ($categories as $category)
-                                                @if ($category->children->count() > 0)
-                                                    <optgroup label="{{ $category->category_name }}">
-                                                        @foreach ($category->children as $child)
-                                                            <option value="{{ $child->id }}">{{ $child->category_name }}
-                                                            </option>
-                                                        @endforeach
-                                                    </optgroup>
-                                                @else
-                                                    <option value="{{ $category->id }}">{{ $category->category_name }}
-                                                    </option>
-                                                @endif
-                                            @endforeach
-                                        </select>
+                                <div class="col-md-4 mb-2">
+                                    @include('component.select_input',['name'=>'category_id','placeholder'=>'Select Category' , 'label'=>'Category', 'options'=>$categories, 'option_label'=>'category_name', 'key'=>'id'])
 
-
-                                    </div>
                                 </div>
 
-                                <div class="col-4 mb-2">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Product Name</label>
-                                        <input type="text" class="form-control p-input" name="product_name"
-                                            id="exampleInputText1" aria-describedby="textlHelp"
-                                            placeholder="Enter Product Name">
-                                        <small id="emailHelp" class="form-text text-muted text-success">Product name is must
-                                            be uniqe.</small>
-                                    </div>
+                                <div class="col-md-4 mb-2">
+                                    @include('component.text_input',['name'=>'product_name','type'=>'text','placeholder'=>'Enter Product Name' , 'label'=>'Product Name'])
+                             
                                 </div>
-                                <div class="col-4 mb-2">
-
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Buying Price</label>
-                                        <input type="number" class="form-control p-input" name="buying_price"
-                                            id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter  Price">
-
-                                    </div>
+                                <div class="col-md-4 mb-2">
+                                    @include('component.text_input',['name'=>'buying_price','type'=>'number','placeholder'=>'Enter Buying Price' , 'label'=>'Buying Price'])
+                             
                                 </div>
-                                <div class="col-4 mb-2">
-
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1"> Selling Price</label>
-                                        <input type="number" class="form-control p-input" name="selling_price"
-                                            id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter  Price">
-
-                                    </div>
+                                <div class="col-md-4 mb-2">
+                                    @include('component.text_input',['name'=>'selling_price','type'=>'number','placeholder'=>'Enter Selling Price' , 'label'=>' Selling Price'])
                                 </div>
-                                <div class="col-4 mb-2">
-
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1"> Product Discount Price</label>
-                                        <input type="number" class="form-control p-input" name="discount_price"
-                                            id="exampleInputEmail1" aria-describedby="emailHelp"
-                                            placeholder="Enter  Discount Price">
-
-                                    </div>
+                                <div class="col-md-4 mb-2">
+                                    @include('component.text_input',['name'=>'discount_price','type'=>'number','placeholder'=>'Enter Discount Price' , 'label'=>' Discount Price'])
                                 </div>
-
-                                <div class="col-4 mb-2">
-
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1"> Product Quantity</label>
-                                        <input type="number" class="form-control p-input" name="product_qty"
-                                            id="exampleInputEmail1" aria-describedby="emailHelp"
-                                            placeholder="Enter Quantity">
-
-                                    </div>
+                                <div class="col-md-4 mb-2">
+                                    @include('component.text_input',['name'=>'product_qty','type'=>'number','placeholder'=>'Enter Product Quantity' , 'label'=>'Product Quantity'])
                                 </div>
-                                <div class="col-4 mb-2">
-
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1"> Product Model</label>
-                                        <input type="text" class="form-control " name="sku" id="exampleInputEmail1"
-                                            placeholder="Enter Product Model">
-
-                                    </div>
+                                <div class="col-md-4 mb-2">
+                                    @include('component.text_input',['name'=>'sku','type'=>'number','placeholder'=>'Enter Product Quantity' , 'label'=>'Product Model'])
                                 </div>
                                 <div class="col-12 mb-2">
                                     <div class="form-group">
@@ -149,7 +92,7 @@
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <div class="col-12">
+                                {{-- <div class="col-12">
                                     <div class="form-group">
                                         <label>Youtube Video</label>
                                         <div class="row">
@@ -160,25 +103,16 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6 mb-2">
+                                </div> --}}
+                                {{-- <div class="col-md-6 mb-2">
                                     <label>Colors</label>
                                     <input type="text" name="color" id="colors" placeholder="Colors">
                                 </div>
                                 <div class="col-md-6 mb-2">
                                     <label>Sizes</label>
                                     <input type="text" name="size" id="size" placeholder="Sizes">
-                                </div>
-                                <div class="col-md-6 mb-2">
-
-                                    <div class="form-group">
-                                        <label for="point"> Point</label>
-                                        <input type="number" class="form-control p-input" name="point"
-                                            id="point"
-                                            placeholder="Enter point">
-
-                                    </div>
-                                </div>
+                                </div> --}}
+                    
                                 <div class="col-md-6 mb-2">
                                     <label for="inputState" class="form-label">Status</label>
                                     <select id="inputState" class="form-select" name="status">

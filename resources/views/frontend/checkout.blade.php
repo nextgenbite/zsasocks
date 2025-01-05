@@ -27,39 +27,14 @@
 @endpush
 @section('content')
     <!-- MAIN WRAPPER -->
-    <div class="body-wrap shop-default shop-cards shop-tech gry-bg">
+    <section class="py-4 contact section "  >
+        <div class=" container" style="margin-top: 10rem !important;" id="cart-summary">
 
-
-        <div class="breadcrumb-area">
-            <div class="container">
-
-                <div class="row">
-                    <div class="col">
-                        <ul class="breadcrumb">
-                            <li><a href="{{ url('/') }}">Home</a></li>
-
-
-                            <li class="active text-truncate">Checkout</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {{-- @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif --}}
-        <section class="py-4 gry-bg" id="cart-summary">
             @if (count($data['content']) > 0)
                 @include('frontend.partials.checkout', ['data' => $data])
             @else
                 <div class="card ">
-
+    
                     <h4 class="text-danger text-center d-flex align-items-center justify-content-center"
                         style=" height:60vh">Please Shopping First</h4>
                 </div>
@@ -68,32 +43,18 @@
                 <i class='fa fa-spinner fa-spin mr-2 d-none'></i>
                 Load Data
               </button> --}}
+        </div>
 
-        </section>
-
-    </div><!-- END: body-wrap -->
+    </section>
 @endsection
 @push('scripts')
 <script type="text/javascript">
-    fbq('track', 'InitiateCheckout', {
-        value: '{{round($data['subtotal'])}}', // Total order value
-        currency: 'BDT'
-    });
+
         function removeFromCartView(e, key) {
             e.preventDefault();
             removeFromCart(key);
         }
 
-        // function updatePrice(key, element) {
-        //     $.post('/cart/updatePrice', {
-        //         _token: 'ICfOSFfxY90pFoZfpJZknXzMruYDXQrIYtv9VHEo',
-        //         key: key,
-        //         price: element.value
-        //     }, function(data) {
-        //         updateNavCart();
-        //         $('#cart-summary').html(data);
-        //     });
-        // }
 
         function updateQuantity(rawId, element) {
             var originalRawId = element.dataset.id;

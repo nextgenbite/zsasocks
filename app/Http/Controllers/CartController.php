@@ -103,7 +103,10 @@ return response()->json($response_data);
         Cart::remove($rowId);
         $data = [
             'content' => Cart::content(),
+            'shipping_cost' => DeliveryCost::where('status', true)->orderBy('cost', 'asc')->get(),
             'count' => Cart::count(),
+            'subtotal' => Cart::subtotal(),
+            'discount' => Session::get('redeem') ? decrypt(Session::get('redeem')) : 0,
             'total' => Cart::total(),
         ];
         $html = view('frontend.partials.checkout', compact('data'))->render();
@@ -117,8 +120,10 @@ return response()->json($response_data);
 
         $data = [
             'content' => Cart::content(),
+            'shipping_cost' => DeliveryCost::where('status', true)->orderBy('cost', 'asc')->get(),
             'count' => Cart::count(),
             'subtotal' => Cart::subtotal(),
+            'discount' => Session::get('redeem') ? decrypt(Session::get('redeem')) : 0,
             'total' => Cart::total(),
         ];
         $html = view('frontend.partials.checkout', compact('data'))->render();

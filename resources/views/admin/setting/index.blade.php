@@ -117,23 +117,7 @@
 
                         </div>
                     </div>
-                    <h5 class="text-muted">Point</h5>
-                    <div class="col-md-6">
-                        <div class="mb-3  ">
-                            <label for="point_name" class="form-label">Point Name</label>
-                            <input type="text" name="key[point_name]" class="form-control"
-                                value="{{ old('point_name',$settings['point_name'] ?? '' ) }}">
-
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="mb-3 ">
-                            <label for="point" class="form-label">Per Point</label>
-                            <input type="number" name="key[point]" class="form-control"
-                                value="{{ old('point',$settings['point'] ?? '' ) }}">
-                                <small class="">ex. per 10 point 1TK = 10</small>
-                        </div>
-                    </div>
+                 
                   <div class="text-center mt-2">
                     <button type="submit" class="btn btn-primary">Submit</button>
                     <button type="reset" class="btn btn-secondary">Reset</button>

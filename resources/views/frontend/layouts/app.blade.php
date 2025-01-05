@@ -20,15 +20,11 @@
   <link href="{{ asset('frontend/vendor/aos/aos.css') }}" rel="stylesheet">
   <link href="{{ asset('frontend/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
   <link href="{{ asset('frontend/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+  <link type="text/css" href="{{ asset('frontend/css/sweetalert2.min.css') }}" rel="stylesheet" media="all">
 
 
     <!-- Main CSS File -->
     <link href="{{ asset('frontend/css/main.css') }}" rel="stylesheet">
-
-    <!-- jQuery -->
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
 
 
     <style>
@@ -114,11 +110,36 @@
   <!-- Main JS File -->
   <script src="{{ asset('frontend/js/main.js') }}"></script>
 
+    <!-- jQuery -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script src="{{ asset('frontend/js/sweetalert2.min.js') }}"></script>
     <script>
           // const div = document.getElementById("right-menu");
         // div.addEventListener("contextmenu", (e) => {
         //     e.preventDefault()
         // });
+
+        document.addEventListener("DOMContentLoaded", function() {
+  window.addEventListener('scroll', function() {
+      // Detect device type dynamically on each scroll event
+      var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+      // Apply behavior based on scroll position and device type
+      if (window.scrollY > 50) {
+    
+              // Apply desktop behavior
+              document.getElementById('header').classList.add('fixed-top');
+
+        
+      } else {
+          // Remove fixed class and reset padding if scroll position <= 50
+          document.getElementById('header').classList.remove('fixed-top');
+          document.body.style.paddingTop = '0';
+      }
+  });
+});
         function showFrontendAlert(type, message) {
             // Map 'danger' type to 'error' for consistency
             if (type === 'danger') {
@@ -169,8 +190,8 @@
                 updateNavCart();
                 $('#cart-summary').html(data);
                 showFrontendAlert('success', 'Item has been removed from cart');
-                $('#cart_items_sidenav').html(parseInt($('#cart_items_sidenav').html()) - 1);
-                $('#rmpro').html(parseInt($('#rmpro').html()) - 1);
+                // $('#cart_items_sidenav').html(parseInt($('#cart_items_sidenav').html()) - 1);
+                // $('#rmpro').html(parseInt($('#rmpro').html()) - 1);
             });
         }
 
@@ -201,9 +222,7 @@
                         //$('.c-preloader').hide();
                         //$('#modal-size').removeClass('modal-lg');
                         //$('#addToCart-modal-body').html(data);
-                        $('head').append(data.fbq_script);
                         updateNavCart();
-                        $('#cart_items_sidenav').html(parseInt($('#cart_items_sidenav').html()) + 1);
                         window.location.replace("/checkout");
                     }
                 });
@@ -215,33 +234,6 @@
 
     </script>
 
-       <!-- Meta Pixel Code -->
-
-{{-- <!-- Meta Pixel Code -->
-<script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '267436919651988');
-    fbq('init', '1079098336681296');
-    fbq('init', '1696641144197459');
-   
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=267436919651988&ev=PageView&noscript=1"
-    /></noscript>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1079098336681296&ev=PageView&noscript=1"
-    /></noscript>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1696641144197459&ev=PageView&noscript=1"
-    /></noscript>
-    <!-- End Meta Pixel Code --> --}}
 
     
     @stack('scripts')

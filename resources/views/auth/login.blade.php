@@ -4,14 +4,14 @@
 
     <section class="gry-bg py-5">
         <div class="profile">
-            <div class="container">
+            <div class="container" style="margin-top: 80px">
                 <div class="row">
                     <div class="col-xxl-4 col-xl-5 col-lg-6 col-md-8 mx-auto">
-                        <div class="card">
-                            <div class="text-center px-35 pt-5">
-                                <h1 class="heading heading-4 strong-500">
+                        <div class="card shadow-lg border">
+                            <div class="text-center px-35 pt-5 " >
+                                <h3 class="heading heading-4 strong-500">
                                     Login to your account.
-                                </h1>
+                                </h3>
                             </div>
 
                             <div class="px-5 py-3 py-lg-4">
@@ -20,43 +20,34 @@
                                         action="{{ route('login') }}">
                                         @csrf
 
-                                        <div class="form-group phone-form-group">
-                                            <div class="input-group input-group--style-1">
-                                                <input type="text"
-                                                    class="form-control @error('login') is-invalid @enderror"
-                                                    aria-describedby="login" placeholder="Enter Phone or Email"
-                                                    name="login" autocomplete="off">
-                                                <span class="input-group-addon">
-                                                    <i class="text-md la la-phone"></i>
-                                                </span>
-                                            </div>
+                            
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="basic-addon2"> <i class="text-md bi bi-phone"></i></span>
+                                            <input type="text" class="form-control  @error('password') is-invalid @enderror" aria-describedby="login" placeholder="Enter Phone or Email"
+                                            name="login" autocomplete="off">
                                             @error('login')
-                                                <div id="login" class="text-danger tex-xs">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-
-                                        <div class="input-group input-group--style-1">
-                                            <input type="password"
-                                                class="form-control   @error('password') is-invalid @enderror "
-                                                aria-describedby="password" placeholder="Password" name="password"
-                                                id="password" autocomplete="current-password">
-                                            <span class="input-group-addon">
-                                                <i class="text-md la la-lock"></i>
-                                            </span>
+                                            <div id="login" class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                          </div>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="basic-addon2"> <i class="text-md bi bi-lock"></i></span>
+                                            <input type="text" class="form-control  @error('password') is-invalid @enderror" placeholder="Password" aria-describedby="password" placeholder="Password" name="password"
+                                            id="password" autocomplete="current-password">
                                             @error('password')
-                                                <div id="password" class="invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
+                                            <div id="password" class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                          </div>
+                              
 
 
                                         <div class="row" style="margin-top: 10px">
                                             <div class="col-6">
                                                 <div class="form-group">
-                                                    <div class="checkbox pad-btm text-left">
+                                                    <div class="checkbox pad-btm text-end">
                                                         <input id="demo-form-checkbox" class="magic-checkbox"
                                                             type="checkbox" name="remember" id="remember"
                                                             {{ old('remember') ? 'checked' : '' }}>
@@ -67,7 +58,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-6 text-right">
-                                                <a href="/password/reset" class="link link-xs link--style-3">Forgot
+                                                <a href="/password/reset" class="link">Forgot
                                                     password?</a>
                                             </div>
                                         </div>
@@ -75,16 +66,12 @@
 
                                         <div class="text-center">
                                             <button type="submit"
-                                                class="btn btn-styled btn-base-1 btn-md w-100">Login</button>
+                                                class="btn btn-primary shadow-lg  btn-md w-100">Login</button>
                                         </div>
                                     </form>
                                 </div>
                             </div>
-                            <div class="text-center px-35 pb-3">
-                                <p class="text-md">
-                                    Need an account? <a href="{{ route('register') }}" class="strong-600">Register Now</a>
-                                </p>
-                            </div>
+                        
                         </div>
                     </div>
                 </div>

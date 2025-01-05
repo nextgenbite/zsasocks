@@ -2,40 +2,10 @@
     <td class="noExl"><input type="checkbox" class="checkbox"></td>
     <td>8{{ $item->id }}</td>
     <td>{{ $item->name }}</td>
-    <td><small>{{ $item->address }}</small></td>
     <td>{{ $item->phone }}</small></td>
-    <td class="text-center">{{($item->delivery_type + $item->amount) -$item->coupon}}</td>
-    <td><small>{{ $item->notes }}</small></td>
-    <td><small>{{ $item->name }}</small></td>
-    <td><small>{{ $item->phone }}</small></td>
-    <td>
-            @php
-                $items = '';
-                foreach ($item->orderitem as $orderItem) {
-                    $items .= $orderItem->product->sku . ', ';
-                }
-                echo rtrim($items, ', ');
-            @endphp
-    </td>
-    <td>
-        @php
-        $items = '';
-        $smallTag = '<small>%s</small>'; // Define the small tag template outside the loop
-        foreach ($item->orderitem as $orderItem) {
-            if (isset($orderItem->color)) {
-                $items .= sprintf($smallTag, $orderItem->color) . ', '; // Use sprintf to inject color into the small tag
-            }
-            if (isset($orderItem->size)) {
-                $items .= sprintf($smallTag, $orderItem->size); // Use sprintf to inject size into the small tag
-            }
-        }
-        // Remove trailing comma and any unnecessary closing </small> tags
-        $items = rtrim($items, ', ');
-        $items = rtrim($items, '</small>') . '</small>';
-        echo $items;
-        @endphp
+    <td class="text-center">{{formatCurrency(($item->delivery_type + $item->amount) -$item->coupon)}}</td>
 
-    </td>
+
     <td>
         @foreach ($item->orderitem as $orderItem)
             <small>{{ $orderItem->qty }}</small>

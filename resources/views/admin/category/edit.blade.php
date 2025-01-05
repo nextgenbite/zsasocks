@@ -30,18 +30,7 @@
                 <span class="text-danger">{{ $message }}</span>
                 @enderror
               </div>
-              <div class="col-12">
-                <label for="parent_id" class="form-label"> Parent Category</label>
-                <select id="parent_id" class="form-select" name="parent_id">
-                  <option selected disabled>Choose...</option>
-                  @foreach ($categories as $item)
-                      <option value="{{ $item->id }}" {{$category->parent_id == $item->id? 'selected': '' }}>{{ $item->category_name }} </option>
-                  @endforeach
-                </select>
-                @error('parent_id') 
-                <span class="text-danger">{{ $message }}</span>
-                @enderror
-              </div>
+
               <div class="col-12">
                 <label for="inputNumber"  class="form-label">File Upload</label>
                   <div class="input-group">

@@ -15,18 +15,7 @@
           <span>Visit Site</span>
         </a>
       </li><!-- End Dashboard Nav -->
-      <li class="nav-item">
-        <a class="nav-link collapsed bg-primary text-bg-dark" href="{{url('/admin/pos')}}">
-          <i class="bi bi-cart text-light"></i>
-          <span>POS</span>
-        </a>
-      </li><!-- End POS Nav -->
-      {{-- <li class="nav-item">
-        <a class="nav-link collapsed" href="{{url('/register')}}">
-          <i class="bi bi-person"></i>
-          <span>User Registration</span>
-        </a>
-      </li><!-- End Register Nav --> --}}
+
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{url('/admin/user')}}">
           <i class="bi bi-people"></i>
@@ -52,24 +41,7 @@
         </ul>
       </li><!-- End Department Nav -->
 
-      {{-- <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#forms-color" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-journal-text"></i><span>Product Color</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="forms-color" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="{{url('/admin/color/create')}}">
-              <i class="bi bi-circle"></i><span>Add</span>
-            </a>
-          </li>
-          <li>
-            <a href="{{url('/admin/color')}}">
-              <i class="bi bi-circle"></i><span>List</span>
-            </a>
-          </li>
-
-        </ul>
-      </li><!-- End Subject Nav --> --}}
+     
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-box"></i><span>Product</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -89,23 +61,6 @@
         </ul>
       </li><!-- End Subject Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#expense" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-dash-circle"></i><span>Expense</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="expense" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="{{url('/admin/expense/create')}}">
-              <i class="bi bi-circle"></i><span>Add</span>
-            </a>
-          </li>
-          <li>
-            <a href="{{url('/admin/expense')}}">
-              <i class="bi bi-circle"></i><span>List</span>
-            </a>
-          </li>
-        </ul>
-      </li><!-- End NotiCouponce Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
@@ -136,8 +91,8 @@
         </a>
         <ul id="report-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="{{url('/admin/report/profit-loss')}}">
-              <i class="bi bi-circle"></i><span>Profit/Loss</span>
+            <a href="{{url('/admin/report/buying-product')}}">
+              <i class="bi bi-circle"></i><span>Buying Product</span>
             </a>
           </li>
           <li>
@@ -145,11 +100,11 @@
               <i class="bi bi-circle"></i><span>Stock</span>
             </a>
           </li>
-          <li>
+          {{-- <li>
             <a href="{{url('/admin/report/buying-product')}}">
               <i class="bi bi-circle"></i><span>Buying Product</span>
             </a>
-          </li>
+          </li> --}}
 
         </ul>
       </li><!-- End Report Nav -->
@@ -190,7 +145,7 @@
    
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#review-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-chat-left-dots"></i><span>Review</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-images"></i><span>Gallary</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="review-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
@@ -224,36 +179,14 @@
 
         </ul>
       </li><!-- End Department Nav -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#marketing-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-tags"></i><span>Marketing</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="marketing-nav" class="nav-content collapse " data-bs-parent="#marketing-nav">
-          <li>
-            <a href="{{url('/admin/coupons')}}">
-              <i class="bi bi-circle"></i><span>Coupons</span>
-            </a>
-          </li>
-          <li>
-            <a href="{{url('/admin/sms/write')}}">
-              <i class="bi bi-circle"></i><span>Sms</span>
-            </a>
-          </li>
 
-        </ul>
-      </li><!-- End Department Nav -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{url('/admin/setting')}}">
           <i class="bi bi-gear"></i>
           <span>Setting</span>
         </a>
       </li><!-- End Setting Page Nav -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{url('/admin/point')}}">
-          <i class="bi bi-coin"></i>
-          <span>Point</span>
-        </a>
-      </li><!-- End Point Page Nav -->
+
 
 
     </ul>

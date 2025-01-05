@@ -37,17 +37,9 @@
                                             @endforeach --}}
 
                                             @foreach ($categories as $category)
-                                            @if ($category->children->count() > 0)
-                                                <optgroup label="{{ $category->category_name }}">
-                                                    @foreach ($category->children as $child)
-                                                        <option {{ $child->id == $product->category_id ? 'selected' : '' }} value="{{ $child->id }}">{{ $child->category_name }}
-                                                        </option>
-                                                    @endforeach
-                                                </optgroup>
-                                            @else
+                                        
                                                 <option {{ $category->id == $product->category_id ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->category_name }}
                                                 </option>
-                                            @endif
                                         @endforeach
                                         </select>
 

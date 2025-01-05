@@ -50,11 +50,12 @@ class ProductController extends Controller
         // Validate the request data
         $validatedData = $request->validate([
             'product_name' => 'required',
+            'category_id' => 'required|integer',
             'selling_price' => 'required',
             'product_image' => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'multi_image.*' => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048',
-            'color' => 'required',
-            'size' => 'required',
+            // 'color' => 'required',
+            // 'size' => 'required',
         ]);
 
         $image = $request->file('product_image');
@@ -77,9 +78,9 @@ class ProductController extends Controller
             'selling_price' => $request->selling_price,
             'discount_price' => $request->discount_price,
             'short_descp_en' => $request->short_descp_en,
-            'color' => json_encode(explode(',', $validatedData['color'])),
-            'size' => json_encode(explode(',', $validatedData['size'])),
-            'product_image' => $image_url,
+            // 'color' => json_encode(explode(',', $validatedData['color'])),
+            // 'size' => json_encode(explode(',', $validatedData['size'])),
+            'product_image' => $image_url ?? null,
             'video' => $request->video,
         ]);
         if (request()->hasFile('multi_image')) {
