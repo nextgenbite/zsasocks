@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         \App\Models\User::factory()->create();
-        $this->call(JsonDataSeeder::class);
+        // $this->call(JsonDataSeeder::class);
 
     }
 }
