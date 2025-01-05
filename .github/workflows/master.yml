@@ -29,5 +29,8 @@ jobs:
           port: 21
           server-dir: /public_html/
           security: loose
+          passive: true
         env:
           GIT_TRACE: 1
+          GIT_CURL_VERBOSE: 1
+          FTP_DEPLOY_DEBUG: true
