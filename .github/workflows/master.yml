@@ -30,3 +30,4 @@ jobs:
           server-dir: /public_html/
         env:
           GIT_TRACE: 1
+
