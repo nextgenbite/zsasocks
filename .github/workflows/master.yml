@@ -29,5 +29,6 @@ jobs:
           **/.git*
           **/.git*/**
           **/node_modules/**
+          **/.env.example*
       env:
         GIT_TRACE: 1
