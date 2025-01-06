@@ -9,7 +9,7 @@
         @if (!empty(trim($__env->yieldContent('title'))))
             @yield('title') |
         @endif
-        {{ ucwords(isset($settings['app_name']) ? $settings['app_name'] : config('app.name')) }}
+        {{settingHelper('app_name', config('app.name'))}}
     </title>
 
     <meta content="" name="description">
@@ -18,7 +18,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Favicons -->
-    <link href="{{ asset($settings['favicon'] ?? 'favicon.png') }}" rel="icon">
+    <link href="{{ asset(settingHelper('favicon', 'favicon.png')) }}" rel="icon">
 
     <!-- Google Fonts -->
 

@@ -2,7 +2,7 @@
   <footer id="footer" class="footer">
     <div class="container">
       <div class="copyright">
-        &copy; Copyright <a href="https://nextgentbite.xyz/">Nextgenbite</a>. All Rights Reserved
+        &copy; Copyright <a href="https://nextgenbite.com">Nextgenbite</a>. All Rights Reserved
       </div>
 
     </div>

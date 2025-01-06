@@ -3,7 +3,7 @@
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="{{url('/home')}}" class="logo d-flex align-items-center">
-        <img src="{{asset($settings['favicon'] ?? '/logo.png')}}" alt="">
+        <img src="{{ asset(settingHelper('favicon','/logo.png')) }}" alt="">
         <span class="d-none d-lg-block">Dashboard</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>

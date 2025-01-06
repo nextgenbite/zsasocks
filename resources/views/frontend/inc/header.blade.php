@@ -35,7 +35,11 @@
   <div class="branding d-flex align-items-center">
     <div class="container position-relative d-flex align-items-center justify-content-between">
       <a href="/" class="logo d-flex align-items-center" aria-label="Go to homepage">
-        <img src="{{ asset(settingHelper('logo')) }}" alt="Site Logo" loading="lazy">
+        @if (settingHelper('logo') !== null)
+          <img src="{{ asset(settingHelper('logo')) }}" alt="Site Logo" loading="lazy">
+        @else
+        <h1 class="sitename">{{settingHelper('app_name', config('app.name'))}}</h1>
+        @endif
         <span class="visually-hidden">Home</span>
       </a>
 
