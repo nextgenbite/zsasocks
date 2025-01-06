@@ -12,25 +12,17 @@ jobs:
   web-deploy:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
-
     steps:
-      # Step 1: Checkout the latest code
-      - name: 🚚 Get latest code
-        uses: actions/checkout@v3
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v3
 
-      # Step 2: Sync files to the FTP server
-      - name: 📂 Sync files to public_html
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-        with:
-          server: ftp.zsasocks.com
-          username: zsasocks
-          password: ${{ secrets.ftp_password }}
-          protocol: ftps
-          port: 21
-          server-dir: /public_html/
-          security: loose
-          passive: true
-        env:
-          GIT_TRACE: 1
-          GIT_CURL_VERBOSE: 1
-          FTP_DEPLOY_DEBUG: true
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: ftp.zsasocks.com
+        username: main@zsasocks.com
+        password: ${{ secrets.ftp_password_2 }}
+        protocol: ftps
+        port: 21
+      env:
+        GIT_TRACE: 1
