@@ -16,7 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $title =$this->title;
+        $title = $this->title;
         $index = Category::latest()->get();
         // return response()->json($index);
         return view('admin.category.index', compact('index', 'title'));
@@ -29,9 +29,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $title =$this->title;
-        $categories = Category::whereNull('parent_id')->get();
-        return view('admin.category.create', compact('title', 'categories'));
+        $title = $this->title;
+        return view('admin.category.create', compact('title'));
     }
 
     /**
@@ -48,7 +47,7 @@ class CategoryController extends Controller
             $image_name = hexdec(uniqid());
             $ext = strtolower($image->getClientOriginalExtension());
             $image_full_name = $image_name . '.' . $ext;
-            $upload_path = 'images/'.$this->title[1].'/';
+            $upload_path = 'images/' . $this->title[1] . '/';
             $image_url = $upload_path . $image_full_name;
             $image->move($upload_path, $image_full_name);
         }
@@ -82,7 +81,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        $title =$this->title;
+        $title = $this->title;
         return view('admin.category.edit', compact('category', 'title'));
     }
 
@@ -100,7 +99,7 @@ class CategoryController extends Controller
             $image_name = hexdec(uniqid());
             $ext = strtolower($image->getClientOriginalExtension());
             $image_full_name = $image_name . '.' . $ext;
-            $upload_path = 'images/'.$this->title[1].'/';
+            $upload_path = 'images/' . $this->title[1] . '/';
             $image_url = $upload_path . $image_full_name;
             $image->move($upload_path, $image_full_name);
             if (file_exists($category->thumbnail)) {
@@ -110,7 +109,7 @@ class CategoryController extends Controller
         $data['slug'] =  Str::slug($request->category_name);
         $data['thumbnail'] =  $image_url ?? $category->thumbnail;
         $category->update($data);
-        
+
         $notification = array(
             'messege' => 'category is update successfully!',
             'alert-type' => 'success'

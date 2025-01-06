@@ -26,7 +26,6 @@
                 
                   <th>Thumb</th>
                   <th>Category Name</th>
-                  <th>Positon</th>
                   <th>Status</th>
                   <th class="text-center" colspan="3">Action</th>
                 </tr>
@@ -38,14 +37,7 @@
         
                   <td><img style="width: 2rem" src="{{asset($cat->thumbnail ?: '/placeholder.jpg')}}" alt="{{$cat->category_name}}"></td>
                     <td>{{$cat->category_name}}</td>
-                
-                  <td>
-                  @if ($cat->parent_id)
-                    <a href="# " class="badge bg-info">Sub Category</a>
-                    @else
-                    <a href="#" class="badge bg-success">Category</a>
-                    @endif
-                  </td>
+
                   <td>
                     @if ($cat->category_status)
                       <a href="{{URL::to('/admin/'.$title[1].'/'.$cat->id.'/inactive')}} " class="badge bg-success"><i class="bi bi-check-circle me-1"></i>Active</a>

@@ -45,7 +45,7 @@ class AppServiceProvider extends ServiceProvider
         if ($pages->isNotEmpty()) {
             View::share('pages', $pages);
         }
-        $categories = Category::whereCategory_status(true)->with('children')->whereNull('parent_id')->get(['id', 'slug', 'category_name', 'slug', 'parent_id']);
+        $categories = Category::whereCategory_status(true)->get(['id',  'category_name', 'slug' ]);
 
         if ($categories->isNotEmpty()) {
             View::share('categories', $categories);
