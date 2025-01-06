@@ -58,7 +58,7 @@
                         <div class="form-group" style="padding-bottom: 15px;">
                             <label for="customer_name">Full Name</label>
                             <input
-                                name="customer_name" required="" value="{{auth()->check() ?  auth()->user()->name : ''}}" type="text" class="form-control  @error('customer_name') is-invalid @enderror " aria-describedby="customer_name"
+                                name="customer_name" required="" value=" {{ old('customer_name', auth()->check() ?  auth()->user()->name : '') }}" type="text" class="form-control  @error('customer_name') is-invalid @enderror " aria-describedby="customer_name"
                                 >
                                 @error('customer_name')
                                 <div  id="customer_name" class="invalid-feedback">
@@ -71,7 +71,7 @@
                             <label for="customer_phone">Mobile No.</label>
                             <input
                                 
-                                name="customer_phone" required="" type="text" value="{{auth()->check() ?  auth()->user()->phone : ''}}" class="form-control  @error('customer_phone') is-invalid @enderror"
+                                name="customer_phone" required="" type="text" value="{{ old('customer_phone', auth()->check() ?  auth()->user()->phone : '') }}" class="form-control  @error('customer_phone') is-invalid @enderror"
                                 >
                                 @error('customer_phone')
                                 <div id="customer_phone" class="invalid-feedback">
@@ -83,7 +83,7 @@
                             <label for="customer_email">Email</label>
                             <input
                                 
-                                name="customer_email" required="" type="text" value="{{auth()->check() ?  auth()->user()->email : ''}}" class="form-control  @error('customer_email') is-invalid @enderror"
+                                name="customer_email" required="" type="text" value="{{ old('customer_email', auth()->check() ?  auth()->user()->email : '') }}" class="form-control  @error('customer_email') is-invalid @enderror"
                                 >
                                 @error('customer_email')
                                 <div id="customer_email" class="invalid-feedback">

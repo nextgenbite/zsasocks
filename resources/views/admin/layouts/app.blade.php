@@ -112,14 +112,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/10.16.11/sweetalert2.all.min.js"
         integrity="sha512-wTjNvMgkUky9XL+o7flmrPZkYpFjSaXZU5cjxvXxD0Q1cFnMKN27ldUNPhdxDp9TO+u2WNglJ9mAgEuKOjH50Q=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="{{ asset('backend/assets/vendor/chart.js/chart.min.js') }}"></script>
-    <script src="{{ asset('backend/assets/vendor/apexcharts/apexcharts.min.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
         integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous">
     </script>
     <script src="{{ asset('backend/assets/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('backend/assets/vendor/echarts/echarts.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.js"
         integrity="sha512-lVkQNgKabKsM1DA/qbhJRFQU8TuwkLF2vSN3iU/c7+iayKs08Y8GXqfFxxTZr1IcpMovXnf2N/ZZoMgmZep1YQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -127,7 +124,6 @@
         integrity="sha512-eYu9MYLjHY1XFltW+aI4gMtX8oRVhWfAYGNls3j2xUZM20hkPHy99d71IdICiTe1Q00yQwszRWmKTlfpr5AOFw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="{{ asset('backend/assets/vendor/simple-datatables/simple-datatables.js') }}"></script>
-    <script src="{{ asset('backend/assets/vendor/php-email-form/validate.js') }}"></script>
 
     <!-- Template Main JS File -->
     <script src="{{ asset('backend/assets/js/main.js') }}"></script>
@@ -203,9 +199,6 @@
     Swal.fire("Changes are not saved", "", "info");
   }
 });
-          
-
-
             });
         });
     </script>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -16,7 +17,7 @@ class UserController extends Controller
     public function index()
     {
         $title =$this->title;
-        $index = User::with('orders.orderitem')->where('role', 'user')->latest()->get();
+        $index = Customer::with('orders.orderitem')->latest()->get();
         // return response()->json($index);
         return view('admin.user.index', compact('index', 'title'));
     }

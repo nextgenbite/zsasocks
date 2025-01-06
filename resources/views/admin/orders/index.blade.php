@@ -118,38 +118,6 @@
                 // Save the workbook as an XLSX file
                 XLSX.writeFile(wb, 'exported_data.xlsx');
             });
-            // var table = $('#myTable').DataTable({
-            //     dom: 'Bfrtip',
-            //     select: true,
-            //     order: [
-            //         [0, 'desc']
-            //     ],
-            //     buttons: [{
-            //             extend: 'csvHtml5',
-            //             exportOptions: {
-            //                 columns: ':not(:last-child):not(:nth-last-child(2))',
-            //                 columns: [0, 1, {
-            //             // Custom function to include checkbox state in export
-            //             render: function (data, type, row) {
-            //                 return row[2].querySelector('.checkbox').checked ? 'Checked' : 'Unchecked';
-            //             }
-            //         }]
-            //             },
-            //             filename: 'order_table_csv',
-            //             text: 'Export CSV',
-            //             className: 'btn btn-primary'
-            //         },
-            //         {
-            //             extend: 'excelHtml5',
-            //             exportOptions: {
-            //                 columns: ':not(:last-child):not(:nth-last-child(2))'
-            //             },
-            //             filename: 'order_table_excel',
-            //             text: 'Export Excel',
-            //             className: 'btn btn-primary'
-            //         }
-            //     ]
-            // });
 
 
             $('body').on('click', '#confirmBtn', function(e) {

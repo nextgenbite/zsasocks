@@ -31,25 +31,25 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         // Retrieve data from cache or database
-        $settings = Cache::remember('config_data', now()->addHours(24), function () {
-            return Setting::get()->pluck('value', 'key');
-        });
+        // $settings = Cache::remember('config_data', now()->addHours(24), function () {
+        //     return Setting::get()->pluck('value', 'key');
+        // });
 
-        if ($settings->isNotEmpty()) {
-            // Share settings with views
-            View::share('settings', $settings);
-        } 
+        // if ($settings->isNotEmpty()) {
+        //     // Share settings with views
+        //     View::share('settings', $settings);
+        // } 
     
-        // Share other data with views
-        $pages = Page::all();
-        if ($pages->isNotEmpty()) {
-            View::share('pages', $pages);
-        }
-        $categories = Category::whereCategory_status(true)->get(['id',  'category_name', 'slug' ]);
+        // // Share other data with views
+        // $pages = Page::all();
+        // if ($pages->isNotEmpty()) {
+        //     View::share('pages', $pages);
+        // }
+        // $categories = Category::whereCategory_status(true)->get(['id',  'category_name', 'slug' ]);
 
-        if ($categories->isNotEmpty()) {
-            View::share('categories', $categories);
-        }
+        // if ($categories->isNotEmpty()) {
+        //     View::share('categories', $categories);
+        // }
     
         // Configure Paginator
         Paginator::useBootstrap();

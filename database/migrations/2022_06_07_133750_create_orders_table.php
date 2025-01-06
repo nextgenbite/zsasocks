@@ -15,20 +15,21 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->constrained('users');
+            $table->foreignId('customer_id')->nullable()->constrained('customers')->onDelete('set null');
             $table->string('name');
-            $table->string('phone');
+            $table->string('phone')->unique();
+            $table->string('email')->unique()->nullable();
             $table->text('address');
-            $table->string('thana');
-            $table->string('district');
+            // $table->string('thana');
+            // $table->string('district');
             $table->text('notes')->nullable();
-            $table->float('amount',8,2);
-            $table->float('coupon',8,2)->nullable();
+            $table->decimal('amount')->default(0);
+            $table->decimal('coupon')->default(0)->nullable();
             $table->string('delivery_type');
             $table->string('order_date');
             $table->string('order_month');
             $table->string('order_year');
-            $table->tinyInteger('status')->default(0); //0= panding, 1= confirm, 2 = dalivered, 3 = sent, 4= return, 5= cancel 
+            $table->tinyInteger('status')->default(0); //0= panding, 1= confirm, 2 = dalivered, 3 = sent, 4= return, 5= cancel it's need update to enum
             $table->timestamps();
         });
     }

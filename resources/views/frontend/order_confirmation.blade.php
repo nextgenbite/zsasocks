@@ -9,18 +9,8 @@
                             <div class="text-center py-4 border-bottom mb-4">
                                 <i class="la la-check-circle la-3x text-success mb-3"></i>
                                 <h1 class="h3 mb-3">Thank You for Your Order!</h1>
-                                <h2 class="h5 strong-700">Order Code: #8{{ $order->id }}</h2>
-                                <p class="text-muted text-italic text-left">    
-                                    * আশা করি আগামী ১-৩ দিনের মধ্যে প্রোডাক্ট টি আপনার এড্রেসে পৌঁছে যাবে। সাময়িক স্টক আউট থাকলে
-                                    কিছু প্রোডাক্টের ডেলিভারি বিলম্ব হতে পারে। <br>
-            
-                                    * প্রোডাক্টটি রিসিভ করার সময় অবশ্যই ডেলিভারি বয়-এর সামনে চেক করে রিসিভ করবেন। নিজে রিসিভ করতে না
-                                    পারলে যিনি রিসিভ করবেন তাকে প্রয়োজনীয় নির্দেশনা দিয়ে দিন।<br>
-            
-                                    * প্রোডাক্ট সংক্রান্ত কোনো মন্তব্য থাকলে ডেলিভারি বয়কে সামনে রেখে আমাদেরকে কল করে জানাবেন (<a
-                                        href="tel:+{{ $settings['phone'] ?? '' }}">{{ $settings['phone'] ?? '' }}</a>)।<br>
-                                    * কোনো কারণে রিটার্ন করতে চাইলে ডেলিভারি চার্জ দিয়ে রিটার্ন করতে পারবেন। </p>
-                            </div>
+                                <h2 class="h5 strong-700">Order Code: #{{ $order->id }}</h2>
+                    
                             <div class="mb-4">
                                 <div class="row">
                                     <div class="col-8">
@@ -36,7 +26,7 @@
                                             <tbody>
                                                 <tr>
                                                     <td class="w-50 strong-600">Order Code:</td>
-                                                    <td>#8{{ $order->id }}</td>
+                                                    <td>#{{ $order->id }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="w-50 strong-600">Name:</td>
