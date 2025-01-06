@@ -28,7 +28,7 @@
 @section('content')
     <!-- MAIN WRAPPER -->
     <section class="py-4 contact section "  >
-        <div class=" container" style="margin-top: 10rem !important;" id="cart-summary">
+        <div class=" container"  id="cart-summary">
 
             @if (count($data['content']) > 0)
                 @include('frontend.partials.checkout', ['data' => $data])
@@ -82,6 +82,8 @@
 
     <script>
         $(document).ready(function() {
+        let currency = "{{settingHelper('site_currency', '$') }}";
+        
             // Change event listener for the select element
             $(document).on('change', '#shipping_id', function() {
                 // Get the selected option value
@@ -95,12 +97,12 @@
                 // Update the displayed shipping cost based on the selected option
                 // var shippingCost = (selectedShippingOption === '130') ?
                 //     shippingCostForOption1 : shippingCostForOption2;
-                $('#shipping-cost').text('Tk ' + shippingCost);
+                $('#shipping-cost').text(currency + shippingCost);
 
                 // Update the subtotal and total based on the new shipping cost
                 var subtotalText = $('#subtotal').text().replace(/[^\d.-]/g, '');
                 var subtotal = parseFloat(subtotalText);
-                var newTotal = 'Tk ' + (subtotal + shippingCost);
+                var newTotal = currency + (subtotal + shippingCost);
 
                 $('#total').text(newTotal);
             });

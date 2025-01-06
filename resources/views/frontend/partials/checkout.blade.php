@@ -114,7 +114,7 @@
                                 <option selected="" disabled="">Select a zone</option>
                                 @forelse ($data['shipping_cost'] as $item)
                                     
-                                <option class="text-capitalize" value="{{$item->cost}}">{{$item->title. ' '. $item->cost}} TK</option>
+                                <option class="text-capitalize" value="{{$item->cost}}">{{$item->title. ' '. formatCurrency($item->cost)}}</option>
                                 @empty
                                     
                                 @endforelse
@@ -214,45 +214,7 @@
 
             <div class="card ">
                 <div class="card-body py-0">
-                    @auth
-                            <div class="accordion" id="accordionExample">
-    
-                          
-                                <div class="card ">
-                                  <div class="card-header p-0" id="headingThree">
-                                    <h2 class="mb-0">
-                                      <button class="btn btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                        Redeem Your {{ isset($settings['point_name']) ? $settings['point_name'] : 'point' }} <i class="la la-chevron-circle-down text-end"></i>
-                                      </button>
-                                    </h2>
-                                  </div>
-                                  <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                                    <div class="card-body p-1">
-                                        <div class="text-info my-2">You have {{auth()->user()->points}}. Per {{ isset($settings['point']) ? $settings['point']: '0'   }} {{ isset($settings['point_name']) ? $settings['point_name'] : 'point' }} = 1 TK</div>
-                                        @if ($data['discount'] <= 0)
-                                            
-                                        <form action="{{route('redeem')}}" method="post">
-                                            @csrf
-                                            <div class="form-group">
-                           
-                                                <input type="number" class="form-control" name="point"
-                                                    id="point"
-                                                    max="{{auth()->user()->points}}"
-                                                    placeholder="Enter point">
-                                              
-                                            </div>
-                                            <button class="btn btn-primary btn-sm">Redeem</button>
-                                        </form>
-                                        @else
-                                        <button class="btn btn-danger btn-sm">Remove</button>
-                                            
-                                        @endif
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                    @endauth
-                
+       
 
                     <table class="table table-cart-review">
 
