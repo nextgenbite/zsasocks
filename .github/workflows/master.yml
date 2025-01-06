@@ -25,7 +25,6 @@ jobs:
         protocol: ftps
         port: 21
         timeout: 120  # Timeout in seconds
-        passive: true  # Ensure passive mode is enabled
         exclude: |
           **/.git*
           **/.git*/**
