@@ -57,7 +57,7 @@
 @foreach ($sliders as $item)
   
 <div class="swiper-slide">
-  <img src="{{asset($item->slider_image)}}" alt="{{ $item->title }}" class="img-fluid">
+  <img src="{{asset($item->slider_image)}}" alt="{{ $item->title }}" class="w-100" >
 </div>
 @endforeach
 
@@ -396,9 +396,9 @@
             <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
               <div class="member">
                 <img src="{{asset('/user-img-female.jpg')}}" class="img-fluid" alt="">
-                <h4>Sahira Jahan (Tithi)</h4>
+                <h4>Shahira Jahan (Tithi)</h4>
                 <span>General Manager</span>
-                <span><i class="bi bi-phone me-1"></i>01756630755</span>
+                <a href=" telephon:+01756630755"><i class="bi bi-phone me-1"></i>01756630755</a>
                 {{-- <div class="social">
                   <a href=""><i class="bi bi-twitter-x"></i></a>
                   <a href=""><i class="bi bi-facebook"></i></a>
