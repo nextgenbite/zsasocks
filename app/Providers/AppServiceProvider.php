@@ -30,10 +30,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app->singleton(LoginPointService::class, function ($app) {
-            return new LoginPointService();
-        });
-       
         // Retrieve data from cache or database
         $settings = Cache::remember('config_data', now()->addHours(24), function () {
             return Setting::get()->pluck('value', 'key');

@@ -29,15 +29,15 @@ class LoginController extends Controller
      *
      * @var string
      */
-    // protected $redirectTo = RouteServiceProvider::HOME;
-    protected function redirectTo()
-    {
-        if (Auth::user()->role == 'admin') {
-            return '/home';
-        } else {
-            return '/dashboard';
-        }
-    }
+    protected $redirectTo = RouteServiceProvider::HOME;
+    // protected function redirectTo()
+    // {
+    //     if (Auth::user()->role == 'admin') {
+    //         return '/home';
+    //     } else {
+    //         return '/dashboard';
+    //     }
+    // }
 
         // Override username method to return the login field
         public function username()
