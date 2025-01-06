@@ -24,11 +24,13 @@ jobs:
         password: ${{ secrets.ftp_password_2 }}
         protocol: ftps
         port: 21
-        timeout: 1200000
+        timeout: 120  # Timeout in seconds
+        passive: true  # Ensure passive mode is enabled
         exclude: |
           **/.git*
           **/.git*/**
           **/node_modules/**
-          **/.env.example*
+          **/.env.example
       env:
         GIT_TRACE: 1
+        GIT_CURL_VERBOSE: 1  # Enable detailed FTP debugging
