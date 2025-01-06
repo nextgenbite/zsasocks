@@ -9,7 +9,6 @@ use App\Models\Page;
 use App\Models\Product;
 use App\Models\Review;
 use App\Models\Slider;
-use Illuminate\Pagination\LengthAwarePaginator;
 
 class IndexController extends Controller
 {
@@ -17,7 +16,7 @@ class IndexController extends Controller
     {
 
         // return Product::whereTop(true)->orderBy('priority', 'asc')->get();
-        $categories = Category::whereCategory_status(true)->whereNull('parent_id')->get(['id', 'slug', 'category_name', 'thumbnail']);
+        $categories = Category::whereCategory_status(true)->get(['id', 'slug', 'category_name', 'thumbnail']);
         
         // Fetching recent, trend, and top products in a single query
         $productsQuery = Product::query();

@@ -1,9 +1,5 @@
 @extends('admin.layouts.app')
-@push('css')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-tagsinput/1.3.6/jquery.tagsinput.min.css"
-        integrity="sha512-uKwYJOyykD83YchxJbUxxbn8UcKAQBu+1hcLDRKZ9VtWfpMb1iYfJ74/UIjXQXWASwSzulZEC1SFGj+cslZh7Q=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-@endpush
+
 @section('content')
     <div class="pagetitle">
         <h1>{{ $title[0] }}</h1>
@@ -50,7 +46,7 @@
                                     @include('component.text_input',['name'=>'product_qty','type'=>'number','placeholder'=>'Enter Product Quantity' , 'label'=>'Product Quantity'])
                                 </div>
                                 <div class="col-md-4 mb-2">
-                                    @include('component.text_input',['name'=>'sku','type'=>'number','placeholder'=>'Enter Product Quantity' , 'label'=>'Product Model'])
+                                    @include('component.text_input',['name'=>'sku','type'=>'text','placeholder'=>'Enter Product Quantity' , 'label'=>'Product Model'])
                                 </div>
                                 <div class="col-12 mb-2">
                                     <div class="form-group">
@@ -142,14 +138,3 @@
         };
     </script>
 @endsection
-@push('scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-tagsinput/1.3.6/jquery.tagsinput.min.js"
-        integrity="sha512-wTIaZJCW/mkalkyQnuSiBodnM5SRT8tXJ3LkIUA/3vBJ01vWe5Ene7Fynicupjt4xqxZKXA97VgNBHvIf5WTvg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script>
-        $(document).ready(function() {
-            $('#colors').tagsInput();
-            $('#size').tagsInput();
-        });
-    </script>
-@endpush

@@ -20,6 +20,7 @@ class CreateProductsTable extends Migration
             $table->string('slug');
             $table->string('sku');
             $table->integer('product_qty');
+            $table->double('buying_price', 8, 2);
             $table->double('selling_price', 8, 2);
             $table->double('discount_price', 8, 2)->nullable();
             $table->longtext('short_descp_en')->nullable();

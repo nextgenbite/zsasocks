@@ -35,7 +35,7 @@ class ProductController extends Controller
     public function create()
     {
         $title =$this->title;
-        $categories = Category::select('id', 'parent_id', 'category_name')->get();
+        $categories = Category::select('id', 'category_name')->get();
         return view('admin.product.create', compact('categories', 'title'));
     }
 
@@ -82,6 +82,8 @@ class ProductController extends Controller
             // 'size' => json_encode(explode(',', $validatedData['size'])),
             'product_image' => $image_url ?? null,
             'video' => $request->video,
+            'status' => $request->status,
+            
         ]);
         if (request()->hasFile('multi_image')) {
             $images = request()->File('multi_image');
@@ -213,6 +215,7 @@ class ProductController extends Controller
             'top' => $request->top,
             'priority' => $request->priority,
             'point' => $request->point,
+            'status' => $request->status,
         ]);
         // $this->storeImage($getProduct);
 
