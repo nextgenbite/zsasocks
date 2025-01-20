@@ -107,7 +107,7 @@
 
         <div class="row gy-4">
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-            <h4>To Be a Company that Our Customers and Society Appetent.</h4>
+            <h4>Vision :To Be a Company that Our Customers and Society Appetent.</h4>
             <p class="text">With integrity, passion, pride, and speed, we actively communicate with our customers to
               deliver insightful products and services that exceed their expectations. We value integrity, customer
               focus, creativity, efficient and nimble actions, and respect highly motivated people and team spirit. We
@@ -115,7 +115,7 @@
               to all people associated with ZSA INTERWEAVE.
             </p>
             <p class="text">
-              ZSA Interweave is a socks knit factory manufacturer and supplier of sports and everyday comfort socks. We
+              Mission:ZSA Interweave is a socks knit factory manufacturer and supplier of sports and everyday comfort socks. We
               manufacture for top brands worldwide, and we offer services that exceed customer satisfaction through
               continuous improvement. We aim to establish long-term relationships with our clients through ethical,
               honest, and transparent transactions
@@ -433,7 +433,7 @@
                 <i class="bi bi-geo-alt flex-shrink-0"></i>
                 <div>
                   <h3>Address</h3>
-                  <p>  {{ $settings['address'] ?? null }}</p>
+                  <p>  {{ settingHelper('address') }}</p>
                 </div>
               </div><!-- End Info Item -->
 
@@ -441,7 +441,7 @@
                 <i class="bi bi-telephone flex-shrink-0"></i>
                 <div>
                   <h3>Call Us</h3>
-                  <p> <a class="text-light" href="tel:+{{ $settings['phone'] ?? null }}" >{{ $settings['phone'] ?? null }}</a></p>
+                  <p> <a class="text-light" href="tel:+{{ settingHelper('phone') }}" >{{ settingHelper('phone') }}</a></p>
                 </div>
               </div><!-- End Info Item -->
               
@@ -450,7 +450,7 @@
                 <div>
                   <h3>Email Us</h3>
                   <p> <a class="text-light"
-                    href="mailto:{{ $settings['contact_mail'] ?? null }}"> {{ $settings['contact_mail'] ?? null }}</a></p>
+                    href="mailto:{{ settingHelper('contact_mail')  }}"> {{settingHelper('contact_mail')   }}</a></p>
               
                 </div>
               </div><!-- End Info Item -->
@@ -501,8 +501,3 @@
   </main>
 @endsection
 
-@section('script')
-    <script>
-         fbq('track', 'PageView');
-    </script>
-@endsection
