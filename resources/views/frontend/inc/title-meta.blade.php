@@ -6,7 +6,7 @@
 
 <meta content="Nexgenbite" name="author" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-@if (settingHelper('favicon') == null)
+@if (settingHelper('favicon') !== null)
 <!-- App favicon -->
 <link rel="shortcut icon" href="{{ asset(settingHelper('favicon','/logo.png')) }}">
 @endif
