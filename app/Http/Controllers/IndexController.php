@@ -9,6 +9,8 @@ use App\Models\Page;
 use App\Models\Product;
 use App\Models\Review;
 use App\Models\Slider;
+use App\Mail\ContactMail;
+use Illuminate\Support\Facades\Mail;
 
 class IndexController extends Controller
 {
@@ -17,19 +19,19 @@ class IndexController extends Controller
 
         // return Product::whereTop(true)->orderBy('priority', 'asc')->get();
         $categories = Category::whereCategory_status(true)->get(['id', 'slug', 'category_name', 'thumbnail']);
-        
+
         // Fetching recent, trend, and top products in a single query
         $productsQuery = Product::query();
 
-   
 
-     
+
+
         // Paginating all products with status true
         $products = $productsQuery->whereStatus(true)->latest()->get();
         // $products = $productsQuery->whereStatus(true)->latest()->paginate(18);
         $sliders = Slider::whereSlider_status(true)->limit(5)->get();
         $reviews = Review::whereStatus(1)->latest()->get();
-        return view('frontend.index', compact('categories', 'products', 'sliders',  'reviews'));
+        return view('frontend.index', compact('sliders',  'reviews'));
     }
     public function ProductDetails($slug)
     {
@@ -46,30 +48,36 @@ class IndexController extends Controller
             ->where('slug', $slug)
             ->with('children.products')
             ->firstOrFail();
-    
+
         // Fetch all products directly from the category and its children, if any
         $productsQuery = $category->products();
-    
+
         if ($category->children->isNotEmpty()) {
             $productsQuery->orWhereIn('category_id', $category->children->pluck('id'));
         }
-    
+
         // Paginate the products
         $perPage = 24;
         $paginatedProducts = $productsQuery->paginate($perPage);
-    
+
         $paginatedProducts->appends(['slug' => $slug]); // Append slug to pagination links
-    
+
         return view('frontend.categories', compact('category', 'paginatedProducts'));
     }
-    
+    public function products()
+    {
+        $categories = Category::whereCategory_status(true)->get(['id', 'slug', 'category_name', 'thumbnail']);
+        $products = Product::whereStatus(true)->latest()->get();
+        return view('frontend.products', compact('categories', 'products'));
+    }
+
     public function prodcutSearch(Request $request)
     {
 
         $products = Product::whereStatus(true)->where('product_name', 'LIKE', '%' . $request->q . '%')
-        ->orwhere('sku','LIKE','%' . $request->q . '%')
-        ->orwhere('short_descp_en','LIKE','%' . $request->q . '%')
-        ->paginate(24);
+            ->orwhere('sku', 'LIKE', '%' . $request->q . '%')
+            ->orwhere('short_descp_en', 'LIKE', '%' . $request->q . '%')
+            ->paginate(24);
         return view('product_search', compact('products'));
     }
     public function ajaxSearch(Request $request)
@@ -100,5 +108,24 @@ class IndexController extends Controller
 
         return view('frontend.partials.nav_element', compact('subcategories'));
     }
-    
+
+    public function contact(Request $request)
+    {
+        // Validate the form data
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'message' => 'required',
+            'subject' => 'required',
+        ]);
+        $to = settingHelper('email', 'iliusrahman@gmail.com');
+        // Send the email
+        Mail::to($to)->send(new ContactMail($request->all()));
+        $notification = array(
+            'messege' => 'Message sent successfully!',
+            'alert-type' => 'success'
+        );
+        // Redirect back with a success message
+        return redirect()->back()->with($notification);
+    }
 }

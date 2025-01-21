@@ -116,6 +116,7 @@ Route::middleware('auth:web')->group(function () {
 
 
 Route::get('/', [App\Http\Controllers\IndexController::class, 'index'])->name('home');
+Route::get('/products', [App\Http\Controllers\IndexController::class, 'products'])->name('products');
 Route::get('/product/{slug}', [App\Http\Controllers\IndexController::class, 'ProductDetails'])->name('Product.Details');
 Route::get('/category/{slug}', [App\Http\Controllers\IndexController::class, 'categoryWiseProduct'])->name('categorWiseProduct');
 Route::post('/sub-category', [App\Http\Controllers\IndexController::class, 'subCategory'])->name('subCategory');
@@ -141,6 +142,7 @@ Route::post('/placeOrder', [OrderController::class, 'placeOrder']);
 Route::post('/prodcut-search', [IndexController::class, 'prodcutSearch'])->name('search');
 Route::post('/ajax-search', [IndexController::class, 'ajaxSearch'])->name('ajax.search');
 Route::get('/order-confirmed/{id}', [OrderController::class, 'confirmation'])->name('order.confirmed');
+Route::post('/contact', [IndexController::class, 'contact'])->name('contact');
 
 // Route::get('/payment', [PaymentController::class, 'store'])->name('payment');
 

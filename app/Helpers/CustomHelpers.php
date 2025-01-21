@@ -16,12 +16,8 @@ if(!function_exists('formatCurrency'))
 {
     function formatCurrency($amount)
     {
-        $config = Cache::get('config_data');
-
-        // Use the currency symbol from the config if available, otherwise default to '$'
-        $currencySymbol = isset($config['currency_symbol']) ? $config['currency_symbol'] : '$';
-
-        return $currencySymbol . round($amount);
+     
+        return settingHelper('currency_symbol', '$') .$amount;
     }
 }
 if(!function_exists('truncate'))
