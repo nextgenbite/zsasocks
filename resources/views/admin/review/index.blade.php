@@ -37,7 +37,7 @@
         
                   <td><img style="width: 2rem" src="{{asset($cat->path ?: '/placeholder.jpg')}}" alt="image">
                   
-                <td> {{$cat->category->category_name}}</td>
+                <td> {{$cat->category?->category_name}}</td>
                   <td>
                   @if ($cat->status ==1)
                     <a href="{{URL::to('/admin/'.$title[1].'/'.$cat->id.'/inactive')}} " class="badge bg-success"><i class="bi bi-check-circle me-1"></i>Active</a>

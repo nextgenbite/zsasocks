@@ -285,7 +285,7 @@
                 <div class="col-lg-3 col-md-6 portfolio-item isotope-item filter-{{$item->category_id}} rounded">
                   <div class="portfolio-content h-100">
                     <a href="{{ $item->path ? asset($item->path) : '/placeholder.jpg' }}" data-gallery="portfolio-gallery-app" class="glightbox"><img
-                        src="{{ $item->path ? asset($item->path) : '/placeholder.jpg' }}" class="img-fluid rounded w-100" alt="{{ $item->category->category_name }}"></a>
+                        src="{{ $item->path ? asset($item->path) : '/placeholder.jpg' }}" class="img-fluid rounded w-100" alt="{{ $item->category?->category_name }}"></a>
 
                   </div>
                 </div><!-- End Portfolio Item -->
