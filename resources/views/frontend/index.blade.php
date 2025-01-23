@@ -259,51 +259,46 @@
       </section>
     </section><!-- /About Section -->
 
-        <!-- Gallary Section -->
-        <section id="gallary" class="gallary portfolio section">
+<!-- Gallary Section -->
+<section id="gallary" class="gallary portfolio section">
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Gallery</h2>
+  </div><!-- End Section Title -->
 
-          <!-- Section Title -->
-          <div class="container section-title" data-aos="fade-up">
-            <h2> Gallary</h2>
-          </div><!-- End Section Title -->
-    
-          <div class="container">
-    
-            <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
-    
-              <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
-                {{-- <li data-filter="*" class="filter-active">All</li> --}}
-                @foreach ($categories as $key => $category)
-                
-                <li data-filter=".filter-{{$category->id}}" class="text-capitalize py-2 px-4 rounded shadow @if ($loop->first) filter-active @endif">{{$category->category_name}}</li>
-                @endforeach
-                {{-- <li data-filter=".filter-product">Product</li> --}}
-              </ul><!-- End Portfolio Filters -->
-    
-              <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
-                @foreach ($reviews as $key => $item)
-                <div class="col-lg-3 col-md-6 portfolio-item isotope-item filter-{{$item->category_id}} rounded">
-                  <div class="portfolio-content h-100">
-                    <a href="{{ $item->path ? asset($item->path) : '/placeholder.jpg' }}" data-gallery="portfolio-gallery-app" class="glightbox"><img
-                        src="{{ $item->path ? asset($item->path) : '/placeholder.jpg' }}" class="img-fluid rounded w-100" alt="{{ $item->category?->category_name }}"></a>
+  <div class="container">
+    <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+      <!-- Gallery Filters -->
+      <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
+        @foreach ($categories as $category)
+          <li data-filter=".filter-{{$category->id}}" 
+              class="text-capitalize py-2 px-4 rounded shadow @if ($loop->first) filter-active @endif">
+            {{$category->category_name}}
+          </li>
+        @endforeach
+      </ul><!-- End Gallery Filters -->
 
-                  </div>
-                </div><!-- End Portfolio Item -->
-    
-                @endforeach
-    
-             
-    
-    
-    
-              </div><!-- End Portfolio Container -->
-    
-            </div>
-    
-          </div>
-    
-        </section><!-- /Product Section -->
-    
+      <!-- Gallery Container -->
+      <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+        @foreach ($categories as $category)
+          @foreach ($category->reviews as $item)
+            <div class="col-lg-3 col-md-6 portfolio-item isotope-item filter-{{$category->id}} rounded">
+              <div class="portfolio-content h-100">
+                <a href="{{ $item->path ? asset($item->path) : '/placeholder.jpg' }}" 
+                   data-gallery="portfolio-gallery-app" class="glightbox">
+                  <img src="{{ $item->path ? asset($item->path) : '/placeholder.jpg' }}" 
+                       class="img-fluid rounded w-100" 
+                       alt="{{ $category->category_name }}">
+                </a>
+              </div>
+            </div><!-- End Gallery Item -->
+          @endforeach
+        @endforeach
+      </div><!-- End Gallery Container -->
+    </div>
+  </div>
+</section><!-- /Gallery Section -->
+
 
       <!-- Team Section -->
       <section id="team" class="team section">

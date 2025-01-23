@@ -16,14 +16,22 @@ class IndexController extends Controller
 {
     public function index()
     {
-
-        // return Product::whereTop(true)->orderBy('priority', 'asc')->get();
-        $categories = Category::whereCategory_status(true)->with('reviews')->get(['id', 'slug', 'category_name', 'thumbnail']);
-
-        $sliders = Slider::whereSlider_status(true)->limit(5)->get();
-        $reviews = Review::whereStatus(1)->latest()->get();
-        return view('frontend.index', compact('sliders', 'reviews',  'categories'));
+        $categories = Category::where('category_status', true)
+        ->with(['reviews' => function ($query) {
+            $query->where('status', 1)->latest();
+        }])
+        ->get(['id', 'slug', 'category_name', 'thumbnail']);
+    
+        $sliders = Slider::where('slider_status', true)
+            ->limit(5)
+            ->get(); // Fetch only necessary fields
+        
+        // Extract all reviews separately for better readability
+        $reviews = $categories->flatMap->reviews;
+    
+        return view('frontend.index', compact('sliders', 'categories'));
     }
+    
     public function ProductDetails($slug)
     {
         $product = Product::whereStatus(true)->whereSlug($slug)->first();
