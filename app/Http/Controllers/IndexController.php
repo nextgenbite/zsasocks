@@ -18,7 +18,8 @@ class IndexController extends Controller
     {
         $categories = Category::where('category_status', true)
         ->with(['reviews' => function ($query) {
-            $query->where('status', 1)->latest();
+            $query->where('status', 1)->orderBy('category_id') // Sort reviews by category_id
+            ->latest(); // Additional sorting by latest
         }])
         ->get(['id', 'slug', 'category_name', 'thumbnail']);
     
