@@ -23,17 +23,29 @@
             <form class="row g-3" action="{{URL::to('/admin/'.$title[1], $data->id)}} " method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
+                <div class="col-12">
                 <label for="inputNumber"  class="form-label">File Upload</label>
                   <div class="input-group">
 
                     <input class="form-control" name="path" type="file" id="formFile">
-                    <img style="width: 2rem"  src="{{asset($data->path ?: '/placeholder.jpg')}}" alt="">
+                    <img class="shadow" style="width: 2rem"  src="{{asset($data->path ?: '/placeholder.jpg')}}" alt="">
                 </div>
                   
                   <br>
                   @error('path')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
+              </div>
+              <div class="col-12">
+                @include('component.select_input', [
+                  'name' => 'category_id',
+                  'placeholder' => 'Select Category',
+                  'label' => 'Category',
+                  'options' => $categories,
+                  'option_label' => 'category_name',
+                  'key' => 'id',
+                  'selected' => $data->category_id
+              ])
               </div>
               <div class="col-12">
                 <label for="inputState" class="form-label">Status</label>

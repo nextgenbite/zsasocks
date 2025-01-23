@@ -29,10 +29,8 @@
 
     <style>
         :root {
-            --primary: {{ $settings['color'] ?? '#0457b1' }};
-            --primary-hover: {{ $settings['hover_color'] ?? '#fff' }};
-
-
+            --primary: {{  settingHelper('color', '#0457b1')}};
+            --primary-hover: {{ settingHelper('hover_color', '#023061') }};
         }
 
         .bg-primary, .btn-primary {

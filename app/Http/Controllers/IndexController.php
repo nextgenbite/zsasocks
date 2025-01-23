@@ -18,20 +18,11 @@ class IndexController extends Controller
     {
 
         // return Product::whereTop(true)->orderBy('priority', 'asc')->get();
-        $categories = Category::whereCategory_status(true)->get(['id', 'slug', 'category_name', 'thumbnail']);
+        $categories = Category::whereCategory_status(true)->with('reviews')->get(['id', 'slug', 'category_name', 'thumbnail']);
 
-        // Fetching recent, trend, and top products in a single query
-        $productsQuery = Product::query();
-
-
-
-
-        // Paginating all products with status true
-        $products = $productsQuery->whereStatus(true)->latest()->get();
-        // $products = $productsQuery->whereStatus(true)->latest()->paginate(18);
         $sliders = Slider::whereSlider_status(true)->limit(5)->get();
         $reviews = Review::whereStatus(1)->latest()->get();
-        return view('frontend.index', compact('sliders',  'reviews'));
+        return view('frontend.index', compact('sliders', 'reviews',  'categories'));
     }
     public function ProductDetails($slug)
     {
@@ -118,7 +109,7 @@ class IndexController extends Controller
             'message' => 'required',
             'subject' => 'required',
         ]);
-        $to = settingHelper('email', 'iliusrahman@gmail.com');
+        $to = settingHelper('contact_mail', 'iliusrahman@gmail.com');
         // Send the email
         Mail::to($to)->send(new ContactMail($request->all()));
         $notification = array(

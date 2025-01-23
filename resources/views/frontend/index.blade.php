@@ -259,61 +259,51 @@
       </section>
     </section><!-- /About Section -->
 
-    <!-- Testimonials Section -->
-    <section id="gallary" class="gallary testimonials section">
+        <!-- Gallary Section -->
+        <section id="gallary" class="gallary portfolio section">
 
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Our Gallary</h2>
-        <!-- <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p> -->
-      </div><!-- End Section Title -->
+          <!-- Section Title -->
+          <div class="container section-title" data-aos="fade-up">
+            <h2> Gallary</h2>
+          </div><!-- End Section Title -->
+    
+          <div class="container">
+    
+            <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+    
+              <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
+                {{-- <li data-filter="*" class="filter-active">All</li> --}}
+                @foreach ($categories as $key => $category)
+                
+                <li data-filter=".filter-{{$category->id}}" class="text-capitalize py-2 px-4 rounded shadow @if ($loop->first) filter-active @endif">{{$category->category_name}}</li>
+                @endforeach
+                {{-- <li data-filter=".filter-product">Product</li> --}}
+              </ul><!-- End Portfolio Filters -->
+    
+              <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+                @foreach ($reviews as $key => $item)
+                <div class="col-lg-3 col-md-6 portfolio-item isotope-item filter-{{$item->category_id}} rounded">
+                  <div class="portfolio-content h-100">
+                    <a href="{{ $item->path ? asset($item->path) : '/placeholder.jpg' }}" data-gallery="portfolio-gallery-app" class="glightbox"><img
+                        src="{{ $item->path ? asset($item->path) : '/placeholder.jpg' }}" class="img-fluid rounded w-100" alt="{{ $item->category->category_name }}"></a>
 
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="swiper init-swiper">
-          <script type="application/json" class="swiper-config">
-                {
-                  "loop": true,
-                  "speed": 600,
-                  "autoplay": {
-                    "delay": 5000
-                  },
-                  "slidesPerView": "auto",
-                  "pagination": {
-                    "el": ".swiper-pagination",
-                    "type": "bullets",
-                    "clickable": true
-                  },
-                  "breakpoints": {
-                    "320": {
-                      "slidesPerView": 1,
-                      "spaceBetween": 40
-                    },
-                    "1200": {
-                      "slidesPerView": 3,
-                      "spaceBetween": 10
-                    }
-                  }
-                }
-              </script>
-          <div class="swiper-wrapper">
-@foreach ($reviews as $item)
-  
-<div class="swiper-slide">
-  <a href="{{ asset($item->path) }}" data-gallery="portfolio-gallery-app" class="glightbox"><img
-      src="{{ asset($item->path) }}" class="img-fluid" alt=""></a>
-
-</div><!-- End testimonial item -->
-@endforeach
-  
-
+                  </div>
+                </div><!-- End Portfolio Item -->
+    
+                @endforeach
+    
+             
+    
+    
+    
+              </div><!-- End Portfolio Container -->
+    
+            </div>
+    
           </div>
-          <div class="swiper-pagination"></div>
-        </div>
-
-      </div>
-
-    </section><!-- /Testimonials Section -->
+    
+        </section><!-- /Product Section -->
+    
 
       <!-- Team Section -->
       <section id="team" class="team section">
@@ -353,7 +343,7 @@
     <section id="contact" class="contact section">
 
       <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
+      <div class="container section-title" >
         <h2>Contact</h2>
         {{-- <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p> --}}
       </div><!-- End Section Title -->

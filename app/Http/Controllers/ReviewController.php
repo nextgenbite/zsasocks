@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Review;
 use Illuminate\Http\Request;
 
 class ReviewController extends Controller
 {
-    public $title = ["Review", 'review'];
+    public $title = ["Gallary", 'review'];
     /**
      * Display a listing of the resource.
      *
@@ -29,7 +30,8 @@ class ReviewController extends Controller
     public function create()
     {
         $title =$this->title;
-        return view('admin.review.create', compact('title'));
+        $categories = Category::select('id', 'category_name')->get();
+        return view('admin.review.create', compact('title', 'categories'));
     }
 
     /**
@@ -81,7 +83,8 @@ class ReviewController extends Controller
     {
         $title =$this->title;
         $data = $review;
-        return view('admin.review.edit', compact('data', 'title'));
+        $categories = Category::select('id', 'category_name')->get();
+        return view('admin.review.edit', compact('data', 'title', 'categories'));
     }
 
     /**

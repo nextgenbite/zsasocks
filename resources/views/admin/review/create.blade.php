@@ -31,6 +31,10 @@
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
               </div>
+              <div class="col-12 mb-2">
+                @include('component.select_input',['name'=>'category_id','placeholder'=>'Select Category' , 'label'=>'Category', 'options'=>$categories, 'option_label'=>'category_name', 'key'=>'id'])
+
+            </div>
               <div class="col-12">
                 <label for="inputState" class="form-label">Status</label>
                 <select id="inputState" class="form-select" name="status">
