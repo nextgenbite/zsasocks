@@ -738,12 +738,17 @@
                                                                                                                             align="left"
                                                                                                                             valign="top"
                                                                                                                             style="padding: 0px 0px 0px 0px;">
-                                                                                                                            <img loading="lazy" src="{{asset($settings['logo']) }}"
+                                                                                                                            @if (settingHelper('logo') == null)
+                                                                                                                                
+                                                                                                                            @else
+                                                                                                                                
+                                                                                                                            <img loading="lazy" src="{{asset(settingHelper('logo')) }}"
                                                                                                                                 class="pc-w620-width-136 pc-w620-height-auto pc-w620-align-center"
                                                                                                                                 width="134"
                                                                                                                                 height="26"
                                                                                                                                 alt=""
                                                                                                                                 style="display: block; outline: 0; line-height: 100%; -ms-interpolation-mode: bicubic; object-fit: contain; width: 134px; height: auto; max-width: 100%; border: 0;" />
+                                                                                                                            @endif
                                                                                                                  
                                                                                                                         </td>
                                                                                                                     </tr>
@@ -915,21 +920,24 @@
                                                         <tr>
                                                             <td valign="top"
                                                                 class="pc-w620-radius-10-10-10-10 pc-w620-padding-24-24-24-24"
-                                                                style="padding: 24px 24px 24px 24px; border-radius: 10px 10px 10px 10px; background-color: {{$settings['color'] ?? '#0067ff'}};"
-                                                                bgcolor="{{$settings['color'] ?? '#0067ff'}}">
+                                                                style="padding: 24px 24px 24px 24px; border-radius: 10px 10px 10px 10px; background-color: {{settingHelper('color', '#0067ff')}};"
+                                                                bgcolor="{{settingHelper('color', '#0067ff')}}">
+                                                                @if (settingHelper('logo') !== null)
+                                                                    
                                                                 <table width="100%" border="0"
                                                                     cellpadding="0" cellspacing="0"
                                                                     role="presentation">
                                                                     <tr>
                                                                         <td align="center" valign="top"
                                                                             style="padding: 0px 0px 12px 0px;">
-                                                                            <img loading="lazy" src="{{ asset($settings['logo']) }}"
+                                                                            <img loading="lazy" src="{{ asset(settingHelper('logo')) }}"
                                                                                 width="135" height="26"
                                                                                 alt=""
                                                                                 style="display: block; outline: 0; line-height: 100%; -ms-interpolation-mode: bicubic; object-fit: contain; width: 135px; height: auto; max-width: 100%; border: 0;" />
                                                                         </td>
                                                                     </tr>
                                                                 </table>
+                                                                @endif
                                                                 <table width="100%" border="0"
                                                                     cellpadding="0" cellspacing="0"
                                                                     role="presentation">
@@ -948,7 +956,7 @@
                                                                                         <div class="pc-font-alt"
                                                                                             style="line-height: 143%; letter-spacing: -0.2px; font-family: 'Poppins', Arial, Helvetica, sans-serif; font-size: 14px; font-weight: normal; font-variant-ligatures: normal; color: #ffffff; text-align: center; text-align-last: center;">
                                                                                             <div>
-                                                                                                <span>{{ $settings['address'] ?? null }}</span>
+                                                                                                <span>{{ settingHelper('address')}}</span>
                                                                                             </div>
                                                                                         </div>
                                                                                     </td>
@@ -957,337 +965,7 @@
                                                                         </td>
                                                                     </tr>
                                                                 </table>
-                                                                <table width="100%" border="0"
-                                                                    cellpadding="0" cellspacing="0"
-                                                                    role="presentation">
-                                                                    <tr>
-                                                                        <td align="center"
-                                                                            style="padding: 24px 0px 0px 0px;">
-                                                                            <table align="center" border="0"
-                                                                                cellpadding="0" cellspacing="0"
-                                                                                role="presentation">
-                                                                                <tr>
-                                                                                    <td valign="top">
-                                                                                        <table
-                                                                                            class="pc-width-hug pc-w620-gridCollapsed-0"
-                                                                                            align="center"
-                                                                                            border="0"
-                                                                                            cellpadding="0"
-                                                                                            cellspacing="0"
-                                                                                            role="presentation">
-                                                                                            <tr
-                                                                                                class="pc-grid-tr-first">
-                                                                                                <td class="pc-grid-td-first pc-w620-itemsSpacings-6-0"
-                                                                                                    valign="middle"
-                                                                                                    style="width: 20%; padding-top: 0px; padding-right: 12px; padding-bottom: 0px; padding-left: 0px;">
-                                                                                                    <table
-                                                                                                        style="border-collapse: separate; border-spacing: 0;"
-                                                                                                        border="0"
-                                                                                                        cellpadding="0"
-                                                                                                        cellspacing="0"
-                                                                                                        role="presentation">
-                                                                                                        <tr>
-                                                                                                            <td class="pc-w620-padding-12-12-12-12"
-                                                                                                                align="center"
-                                                                                                                valign="middle"
-                                                                                                                style="padding: 0px 0px 0px 0px; border-radius: 500px 500px 500px 500px;">
-                                                                                                                <table
-                                                                                                                    align="center"
-                                                                                                                    width="100%"
-                                                                                                                    border="0"
-                                                                                                                    cellpadding="0"
-                                                                                                                    cellspacing="0"
-                                                                                                                    role="presentation"
-                                                                                                                    style="width: 100%;">
-                                                                                                                    <tr>
-                                                                                                                        <td align="center"
-                                                                                                                            valign="top">
-                                                                                                                            <table
-                                                                                                                                align="center"
-                                                                                                                                border="0"
-                                                                                                                                cellpadding="0"
-                                                                                                                                cellspacing="0"
-                                                                                                                                role="presentation">
-                                                                                                                                <tr>
-                                                                                                                                    <td
-                                                                                                                                        valign="top">
-                                                                                                                                        <a class="pc-font-alt"
-                                                                                                                                            href="{{ isset($settings['instagram']) ?? '' }}"
-                                                                                                                                            target="_blank"
-                                                                                                                                            style="text-decoration: none;">
-                                                                                                                                            <img loading="lazy" src="{{asset('assets/images/649c68b0a6dc8f618df90ec1f44e0082.png')}}"
-                                                                                                                                                class=""
-                                                                                                                                                width="26"
-                                                                                                                                                height="26"
-                                                                                                                                                style="display: block; border: 0; outline: 0; line-height: 100%; -ms-interpolation-mode: bicubic; width: 26px; height: 26px;"
-                                                                                                                                                alt="" />
-                                                                                                                                        </a>
-                                                                                                                                    </td>
-                                                                                                                                </tr>
-                                                                                                                            </table>
-                                                                                                                        </td>
-                                                                                                                    </tr>
-                                                                                                                </table>
-                                                                                                            </td>
-                                                                                                        </tr>
-                                                                                                    </table>
-                                                                                                </td>
-                                                                                                <td class="pc-w620-itemsSpacings-6-0"
-                                                                                                    valign="middle"
-                                                                                                    style="width: 20%; padding-top: 0px; padding-right: 12px; padding-bottom: 0px; padding-left: 12px;">
-                                                                                                    <table
-                                                                                                        style="border-collapse: separate; border-spacing: 0;"
-                                                                                                        border="0"
-                                                                                                        cellpadding="0"
-                                                                                                        cellspacing="0"
-                                                                                                        role="presentation">
-                                                                                                        <tr>
-                                                                                                            <td class="pc-w620-padding-12-12-12-12"
-                                                                                                                align="center"
-                                                                                                                valign="middle"
-                                                                                                                style="padding: 0px 0px 0px 0px; border-radius: 500px 500px 500px 500px;">
-                                                                                                                <table
-                                                                                                                    align="center"
-                                                                                                                    width="100%"
-                                                                                                                    border="0"
-                                                                                                                    cellpadding="0"
-                                                                                                                    cellspacing="0"
-                                                                                                                    role="presentation"
-                                                                                                                    style="width: 100%;">
-                                                                                                                    <tr>
-                                                                                                                        <td align="center"
-                                                                                                                            valign="top">
-                                                                                                                            <table
-                                                                                                                                align="center"
-                                                                                                                                border="0"
-                                                                                                                                cellpadding="0"
-                                                                                                                                cellspacing="0"
-                                                                                                                                role="presentation">
-                                                                                                                                <tr>
-                                                                                                                                    <td
-                                                                                                                                        valign="top">
-                                                                                                                                        <a class="pc-font-alt"
-                                                                                                                                            href="{{ isset($settings['twitter']) ?? '' }}"
-                                                                                                                                            target="_blank"
-                                                                                                                                            style="text-decoration: none;">
-                                                                                                                                            <img src="{{asset('assets/images/e931e54b1bf5c1e0cac743c437478e90.png')}}"
-                                                                                                                                                class=""
-                                                                                                                                                width="26"
-                                                                                                                                                height="26"
-                                                                                                                                                style="display: block; border: 0; outline: 0; line-height: 100%; -ms-interpolation-mode: bicubic; width: 26px; height: 26px;"
-                                                                                                                                                alt="" />
-                                                                                                                                        </a>
-                                                                                                                                    </td>
-                                                                                                                                </tr>
-                                                                                                                            </table>
-                                                                                                                        </td>
-                                                                                                                    </tr>
-                                                                                                                </table>
-                                                                                                            </td>
-                                                                                                        </tr>
-                                                                                                    </table>
-                                                                                                </td>
-                                                                                                <td class="pc-w620-itemsSpacings-6-0"
-                                                                                                    valign="middle"
-                                                                                                    style="width: 20%; padding-top: 0px; padding-right: 12px; padding-bottom: 0px; padding-left: 12px;">
-                                                                                                    <table
-                                                                                                        style="border-collapse: separate; border-spacing: 0;"
-                                                                                                        border="0"
-                                                                                                        cellpadding="0"
-                                                                                                        cellspacing="0"
-                                                                                                        role="presentation">
-                                                                                                        <tr>
-                                                                                                            <td class="pc-w620-padding-12-12-12-12"
-                                                                                                                align="center"
-                                                                                                                valign="middle"
-                                                                                                                style="padding: 0px 0px 0px 0px; border-radius: 500px 500px 500px 500px;">
-                                                                                                                <table
-                                                                                                                    align="center"
-                                                                                                                    width="100%"
-                                                                                                                    border="0"
-                                                                                                                    cellpadding="0"
-                                                                                                                    cellspacing="0"
-                                                                                                                    role="presentation"
-                                                                                                                    style="width: 100%;">
-                                                                                                                    <tr>
-                                                                                                                        <td align="center"
-                                                                                                                            valign="top">
-                                                                                                                            <table
-                                                                                                                                align="center"
-                                                                                                                                border="0"
-                                                                                                                                cellpadding="0"
-                                                                                                                                cellspacing="0"
-                                                                                                                                role="presentation">
-                                                                                                                                <tr>
-                                                                                                                                    <td
-                                                                                                                                        valign="top">
-                                                                                                                                        <a class="pc-font-alt"
-                                                                                                                                            href="{{ isset($settings['facebook']) ?? '' }}"
-                                                                                                                                            target="_blank"
-                                                                                                                                            style="text-decoration: none;">
-                                                                                                                                            <img src="{{asset('assets/images/d39505db407e6ca83fd432b2866ccda0.png')}}"
-                                                                                                                                                class=""
-                                                                                                                                                width="26"
-                                                                                                                                                height="26"
-                                                                                                                                                style="display: block; border: 0; outline: 0; line-height: 100%; -ms-interpolation-mode: bicubic; width: 26px; height: 26px;"
-                                                                                                                                                alt="" />
-                                                                                                                                        </a>
-                                                                                                                                    </td>
-                                                                                                                                </tr>
-                                                                                                                            </table>
-                                                                                                                        </td>
-                                                                                                                    </tr>
-                                                                                                                </table>
-                                                                                                            </td>
-                                                                                                        </tr>
-                                                                                                    </table>
-                                                                                                </td>
-                                                                                                <td class="pc-w620-itemsSpacings-6-0"
-                                                                                                    valign="middle"
-                                                                                                    style="width: 20%; padding-top: 0px; padding-right: 12px; padding-bottom: 0px; padding-left: 12px;">
-                                                                                                    <table
-                                                                                                        style="border-collapse: separate; border-spacing: 0;"
-                                                                                                        border="0"
-                                                                                                        cellpadding="0"
-                                                                                                        cellspacing="0"
-                                                                                                        role="presentation">
-                                                                                                        <tr>
-                                                                                                            <td class="pc-w620-padding-12-12-12-12"
-                                                                                                                align="center"
-                                                                                                                valign="middle"
-                                                                                                                style="padding: 0px 0px 0px 0px; border-radius: 500px 500px 500px 500px;">
-                                                                                                                <table
-                                                                                                                    align="center"
-                                                                                                                    width="100%"
-                                                                                                                    border="0"
-                                                                                                                    cellpadding="0"
-                                                                                                                    cellspacing="0"
-                                                                                                                    role="presentation"
-                                                                                                                    style="width: 100%;">
-                                                                                                                    <tr>
-                                                                                                                        <td align="center"
-                                                                                                                            valign="top">
-                                                                                                                            <table
-                                                                                                                                align="center"
-                                                                                                                                border="0"
-                                                                                                                                cellpadding="0"
-                                                                                                                                cellspacing="0"
-                                                                                                                                role="presentation">
-                                                                                                                                <tr>
-                                                                                                                                    <td
-                                                                                                                                        valign="top">
-                                                                                                                                        <a class="pc-font-alt"
-                                                                                                                                            href="{{ isset($settings['tiktok']) ?? '' }}"
-                                                                                                                                            target="_blank"
-                                                                                                                                            style="text-decoration: none;">
-                                                                                                                                            <img src="{{asset('assets/images/502b0595d6ddd6fc8df1fe4bb7f886cd.png')}}"
-                                                                                                                                                class=""
-                                                                                                                                                width="26"
-                                                                                                                                                height="26"
-                                                                                                                                                style="display: block; border: 0; outline: 0; line-height: 100%; -ms-interpolation-mode: bicubic; width: 26px; height: 26px;"
-                                                                                                                                                alt="" />
-                                                                                                                                        </a>
-                                                                                                                                    </td>
-                                                                                                                                </tr>
-                                                                                                                            </table>
-                                                                                                                        </td>
-                                                                                                                    </tr>
-                                                                                                                </table>
-                                                                                                            </td>
-                                                                                                        </tr>
-                                                                                                    </table>
-                                                                                                </td>
-                                                                                                <td class="pc-grid-td-last pc-w620-itemsSpacings-6-0"
-                                                                                                    valign="middle"
-                                                                                                    style="width: 20%; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 12px;">
-                                                                                                    <table
-                                                                                                        style="border-collapse: separate; border-spacing: 0;"
-                                                                                                        border="0"
-                                                                                                        cellpadding="0"
-                                                                                                        cellspacing="0"
-                                                                                                        role="presentation">
-                                                                                                        <tr>
-                                                                                                            <td class="pc-w620-padding-12-12-12-12"
-                                                                                                                align="center"
-                                                                                                                valign="middle"
-                                                                                                                style="padding: 0px 0px 0px 0px; border-radius: 500px 500px 500px 500px;">
-                                                                                                                <table
-                                                                                                                    align="center"
-                                                                                                                    width="100%"
-                                                                                                                    border="0"
-                                                                                                                    cellpadding="0"
-                                                                                                                    cellspacing="0"
-                                                                                                                    role="presentation"
-                                                                                                                    style="width: 100%;">
-                                                                                                                    <tr>
-                                                                                                                        <td align="center"
-                                                                                                                            valign="top">
-                                                                                                                            <table
-                                                                                                                                align="center"
-                                                                                                                                border="0"
-                                                                                                                                cellpadding="0"
-                                                                                                                                cellspacing="0"
-                                                                                                                                role="presentation">
-                                                                                                                                <tr>
-                                                                                                                                    <td
-                                                                                                                                        valign="top">
-                                                                                                                                        <a class="pc-font-alt"
-                                                                                                                                            href="{{ isset($settings['youtube']) ?? '' }}"
-                                                                                                                                            target="_blank"
-                                                                                                                                            style="text-decoration: none;">
-                                                                                                                                            <img src="{{asset('assets/images/3b897c472dab53429b14734d1fa9a8bd.png')}}"
-                                                                                                                                                class=""
-                                                                                                                                                width="26"
-                                                                                                                                                height="26"
-                                                                                                                                                style="display: block; border: 0; outline: 0; line-height: 100%; -ms-interpolation-mode: bicubic; width: 26px; height: 26px;"
-                                                                                                                                                alt="" />
-                                                                                                                                        </a>
-                                                                                                                                    </td>
-                                                                                                                                </tr>
-                                                                                                                            </table>
-                                                                                                                        </td>
-                                                                                                                    </tr>
-                                                                                                                </table>
-                                                                                                            </td>
-                                                                                                        </tr>
-                                                                                                    </table>
-                                                                                                </td>
-                                                                                            </tr>
-                                                                                            <tr
-                                                                                                class="pc-grid-tr-last">
-                                                                                                <td class="pc-grid-td-first pc-grid-td-last pc-w620-itemsSpacings-6-0"
-                                                                                                    valign="middle"
-                                                                                                    style="width: 20%; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px;">
-                                                                                                    <table
-                                                                                                        style="border-collapse: separate; border-spacing: 0;"
-                                                                                                        border="0"
-                                                                                                        cellpadding="0"
-                                                                                                        cellspacing="0"
-                                                                                                        role="presentation">
-                                                                                                        <tr>
-                                                                                                            <td align="left"
-                                                                                                                valign="top">
-                                                                                                                <table
-                                                                                                                    align="left"
-                                                                                                                    width="100%"
-                                                                                                                    border="0"
-                                                                                                                    cellpadding="0"
-                                                                                                                    cellspacing="0"
-                                                                                                                    role="presentation"
-                                                                                                                    style="width: 100%;">
-                                                                                                                </table>
-                                                                                                            </td>
-                                                                                                        </tr>
-                                                                                                    </table>
-                                                                                                </td>
-                                                                                            </tr>
-                                                                                        </table>
-                                                                                    </td>
-                                                                                </tr>
-                                                                            </table>
-                                                                        </td>
-                                                                    </tr>
-                                                                </table>
+                                                             
                                                             </td>
                                                         </tr>
                                                     </table>
