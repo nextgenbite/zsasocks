@@ -125,6 +125,9 @@ class IndexController extends Controller
             'messege' => 'Message sent successfully!',
             'alert-type' => 'success'
         );
+        if ($request->ajax()) {
+           return response()->json(['success' => 'Message sent successfully!'], 200);
+        }
         // Redirect back with a success message
         return redirect()->back()->with($notification);
     }
