@@ -33,7 +33,7 @@ class SettingController extends Controller
                 // Process image upload
 
                 $setting = Setting::where('key', $key)->first();
-                if ($setting && file_exists(public_path($setting->value)) && is_file(public_path($setting->value))) {
+                if ($setting && $setting->value && file_exists(public_path($setting->value)) && is_file(public_path($setting->value))) {
                     unlink(public_path($setting->value));
                 }
                 $image_name = hexdec(uniqid());
