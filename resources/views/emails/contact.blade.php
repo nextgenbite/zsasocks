@@ -27,7 +27,7 @@
                                     <div >
                                         <p><b>Sender:</b>{{ $data['name'] }}</p>
                                         <p><b>Email:</b>{{ $data['email'] }}</p>
-                                        <p><b>Phone:</b>{{ $data['phone'] }}</p>
+                                        <p><b>Subject:</b>{{ $data['subject'] }}</p>
                                     </div>
                                     <p>
                                         {{ $data['message'] }}
