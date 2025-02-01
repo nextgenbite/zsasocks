@@ -50,6 +50,7 @@
           <li><a href="/products">Our Products</a></li>
           <li><a href="#gallary">Gallery</a></li>
           <li><a href="#contact">Contact</a></li>
+          <li><a href="https://zsasocks.com:2096" target="_blank" title="Webmail">Webmail</a></li>
         </ul>
         <button class="mobile-nav-toggle d-xl-none" aria-label="Toggle Navigation">
           <i class="bi bi-list"></i>
